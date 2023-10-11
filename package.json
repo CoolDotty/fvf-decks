@@ -1,0 +1,8 @@
+{
+  "name": "fvf-decks",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/KarlTheCool/fvf-decks.git",
+  "author": "Karl Phillips <k@rlphilli.ps>",
+  "license": "MIT"
+}
