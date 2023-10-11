@@ -1,3 +1,20 @@
 .App {
   
 }
+
+.card {
+    position: relative;
+    display: inline-block;
+    aspect-ratio: 5/7;
+    background-size: contain;
+    width: 10em;
+}
+
+.card > .cost {
+    position: absolute;
+    top: 0;
+    right: 2%;
+    width: 16%;
+    aspect-ratio: 1/1;
+    background-size: cover;
+}
