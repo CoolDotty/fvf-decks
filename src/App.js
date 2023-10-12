@@ -14,17 +14,17 @@ const Card = (props) => {
   return (
     <div 
       className={`card cost${cost} ${equipped ? 'equipped' : ''}`} 
-      style={{ backgroundImage: `url("fvf-decks/cards/${img}")` }} 
+      style={{ backgroundImage: `url("cards/${img}")` }} 
       title={name} 
       {...rest}
     >
-      <div className="cost" style={{ backgroundImage: `url("fvf-decks/cost/card_cost_icon_${cost}.png")` }} />
+      <div className="cost" style={{ backgroundImage: `url("cost/card_cost_icon_${cost}.png")` }} />
       <div 
         className="level" 
         style={{ 
           backgroundImage: type === "Personality"
-            ? `url("fvf-decks/level/card_lvl_10.png")`
-            : `url("fvf-decks/level/card_lvl_max.png")`
+            ? `url("level/card_lvl_10.png")`
+            : `url("level/card_lvl_max.png")`
         }}
       />
     </div>
