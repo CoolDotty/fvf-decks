@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/fvf-decks/static/css/main.437184f0.css",
-    "main.js": "/fvf-decks/static/js/main.7a31efaf.js",
-    "index.html": "/fvf-decks/index.html",
-    "main.437184f0.css.map": "/fvf-decks/static/css/main.437184f0.css.map",
-    "main.7a31efaf.js.map": "/fvf-decks/static/js/main.7a31efaf.js.map"
+    "main.css": "/static/css/main.437184f0.css",
+    "main.js": "/static/js/main.c4a817a8.js",
+    "index.html": "/index.html",
+    "main.437184f0.css.map": "/static/css/main.437184f0.css.map",
+    "main.c4a817a8.js.map": "/static/js/main.c4a817a8.js.map"
   },
   "entrypoints": [
     "static/css/main.437184f0.css",
-    "static/js/main.7a31efaf.js"
+    "static/js/main.c4a817a8.js"
   ]
 }
