@@ -9108,6 +9108,11 @@ url-parse@^1.5.3:
     querystringify "^2.1.1"
     requires-port "^1.0.0"
 
+urlsafe-lzma@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/urlsafe-lzma/-/urlsafe-lzma-1.0.4.tgz#2da556b34b07bcef379c5eac1eb361b7551350fa"
+  integrity sha512-c/hFsOC7TT3m7aAGLhDiXG0rlZhm6MnR5mGpgMDZc90wgolnJ/Pq8O6DA09IKKhsmhuFR9l3vlvcNGACV/RSew==
+
 util-deprecate@^1.0.1, util-deprecate@^1.0.2, util-deprecate@~1.0.1:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/util-deprecate/-/util-deprecate-1.0.2.tgz#450d4dc9fa70de732762fbd2d4a28981419a0ccf"

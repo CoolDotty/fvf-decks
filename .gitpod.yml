@@ -1,0 +1,7 @@
+tasks:
+  - init: yarn
+    command: yarn start
+ports:
+    - name: Web
+      port: 3000
+      onOpen: ignore # create-react-app opens browser automatically
