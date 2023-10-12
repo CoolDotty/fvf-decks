@@ -40,7 +40,7 @@ export const App = () => {
   const [myDeck, setMyDeck] = useState(
     (searchParams.get("deck") || "")
       .split('.')
-      .map((s) => cards.find((c) => c.id === parseInt(s, 10)))
+      .map((s) => allCards.find((c) => c.id === parseInt(s, 10)))
       .filter(Boolean)
   );
 
@@ -78,12 +78,12 @@ export const App = () => {
     <div className="App">
       <div className="myDeck">
         {myDeck
-          // .sort((a, b) => b.cost - a.cost)
           .reduce((acc, c) => {
-            if (acc[c.cost]) {
-              acc[c.cost].push(c)
+            const order = c.type === "Personality" ? 1000 : c.cost
+            if (acc[order]) {
+              acc[order].push(c)
             } else {
-              acc[c.cost] = [c]
+              acc[order] = [c]
             }
             return acc
           }, [])
