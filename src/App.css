@@ -1,37 +1,99 @@
+@font-face {
+    font-family: 'Friendly Fire';
+    src: local('Friendly Fire'), url(../public/fonts/Friendly_Fire.ttf);
+}
+  
+@font-face {
+    font-family: 'Kenyan Coffee';
+    src: local('Kenyan Coffee'), url(../public/fonts/kenyan_coffee_rg.otf);
+}
+
 html, body {
-    background: black;
+    background: rgb(42, 21, 82);
     color: white;
 }
 
 .App {
-  
+  font-family: 'Friendly Fire';
+  font-size: 2em;
+  text-transform: uppercase;
+  text-shadow:
+    /* Basic Outline */
+    -0.1em -0.1em 0 #000,
+     0.1em -0.1em 0 #000,
+    -0.1em  0.1em 0 #000,
+     0.1em  0.1em 0 #000;
+  letter-spacing: 0.1em;
 }
 
 .myDeck {
-    min-height: 15em;
+    position: relative;
+    min-height: 15rem;
+}
+
+.myDeck > .characterArt {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background-repeat: no-repeat;
 }
 
 .filters {
     display: flex;
-    gap: 1em;
+    gap: 1rem;
 }
 
 .card {
     position: relative;
     display: inline-block;
-    aspect-ratio: 5/7;
-    background-size: contain;
-    width: 10em;
-    border-radius: 5px;
-    border: 0.25em solid transparent;
-    background-repeat: no-repeat;
+    width: 10rem;
+    border-top: 0.25rem solid transparent;
+    border-left: 0.25rem solid transparent;
+    border-right: 0.25rem solid transparent;
+    border-bottom: 1.5rem solid transparent;
+    border-radius: 0.5rem;
+}
+
+.card.equipped::before {
+    content: '';
+    background-color: white;
+    position: absolute;
+    inset: 0;
+
+}
+
+.card::after {
+    content: 'Equipped';
+    display: none;
+    text-transform: uppercase;
+    position: absolute;
+    color: black;
+    text-shadow: none;
+    font-size: 1.25rem;
+    letter-spacing: initial;
+    bottom: -1.3rem;
+    right: 0.5rem;
 }
 
 .card.equipped {
     border-color: white;
 }
 
-.card > .cost {
+.card.equipped::after {
+    display: block;
+}
+
+.card > .cardContent {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 5/7;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 0.5rem;
+}
+
+.card > .cardContent > .cost {
     position: absolute;
     top: 0;
     right: 2%;
@@ -42,7 +104,7 @@ html, body {
     pointer-events: none;
 }
 
-.card > .level {
+.card > .cardContent > .level {
     position: absolute;
     top: 1%;
     left: 50%;

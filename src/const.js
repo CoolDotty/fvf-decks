@@ -127,3 +127,17 @@ export const allCards = [
 export const cards = allCards.filter(({ type }) => type !== "Personality")
 
 export const personalities = allCards.filter(({ type }) => type === "Personality")
+
+export const personalityToId = (p) => ({
+  "Classic": "seagull",
+  "Thick Coat": "polarbear",
+  "Power Legs": "moose",
+  "Runner": "hare",
+  "Katana Lover": "tiger",
+  "It's Medicinal": "duck",
+  "Big Bullets": "cat",
+  "Brasslover": "woodpecker",
+  "Dither & Banding": "rat",
+  "Reading Glasses": "crocodile",
+  "Badass": "doberman",
+})[p]
