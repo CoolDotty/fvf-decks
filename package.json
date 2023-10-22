@@ -27,7 +27,7 @@
     "predeploy": "npm run build",
     "deploy": "yarn predeploy; gh-pages -d build",
     "eject": "react-scripts eject",
-    "lint": "./node_modules/.bin/eslint src/ --fix"
+    "lint": "./node_modules/.bin/eslint \"**/*.{js,jsx}\" --fix"
   },
   "eslintConfig": {
     "extends": [
