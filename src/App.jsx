@@ -2,12 +2,14 @@ import './reset.css';
 import './App.css';
 import React, { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import Select from 'react-select';
 
 // Compressed decks strings seem to be longer than uncompressed ones
 // import { compressUrlSafe, decompressUrlSafe } from 'urlsafe-lzma';
 
 import {
-  allCards, personalityToId,
+  allCards, personalityToId, defaultCardSort,
 } from './const';
 
 function Card(props) {
@@ -45,6 +47,27 @@ function Card(props) {
 const MAX_COST = 50;
 const MIN_CARDS = 25;
 
+// Big air quotes on this one. Just for sorting nicely
+const cardTypeValue = {
+  Personality: 0,
+  Buff: 1,
+  Debuff: 2,
+  Weapon: 3,
+  Helper: 4,
+  Wild: 5,
+  Trap: 6,
+};
+
+const cardSorters = {
+  id: defaultCardSort,
+  cost: (a, b) => a.cost - b.cost,
+  type: (a, b) => (
+    a.type === b.type
+      ? defaultCardSort(a, b)
+      : cardTypeValue[a.type] - cardTypeValue[b.type]),
+  // Rarity
+};
+
 export default function App() {
   const [searchParams, setSearchParams] = useSearchParams();
   const [myDeck, setMyDeck] = useState(
@@ -68,31 +91,56 @@ export default function App() {
   }, [myDeck, setSearchParams]);
 
   const [cardFilter, setCardFilter] = useState('All');
+  const [cardSort, setCardSort] = useState('id');
 
   const deckCost = myCards
     .reduce((acc, c) => acc + c.cost, 0);
   const deckCount = myCards
     .length;
+  
+  const deckIsEmpty = myDeck.length <= 0;
 
   return (
     <div className="App">
-      <div className="filters">
-        <span>
-          Cost:
-          {' '}
-          {deckCost > MAX_COST ? <b style={{ color: 'red' }}>{deckCost}</b> : deckCost}
-          /
-          {MAX_COST}
-        </span>
-        <span>
-          Count:
-          {' '}
-          {deckCount < MIN_CARDS ? <b style={{ color: 'red' }}>{deckCount}</b> : deckCount}
-          /
-          {MIN_CARDS}
-        </span>
+      <div className="topMenu">
+        <div className="title">
+          <img className="logo" src="./favicon.ico" alt="" />
+          <span className="text">
+            FvF Deck Builder
+          </span>
+        </div>
+        <div className="costMenu">
+          <span>
+            Cost:
+            &nbsp;
+            {deckCost > MAX_COST ? <b style={{ color: 'red' }}>{deckCost}</b> : deckCost}
+            /
+            {MAX_COST}
+          </span>
+          <span>
+            Count:
+            &nbsp;
+            {deckCount < MIN_CARDS ? <b style={{ color: 'red' }}>{deckCount}</b> : deckCount}
+            /
+            {MIN_CARDS}
+          </span>
+        </div>
       </div>
-      <div className="myDeck">
+      <div className={`myDeck ${deckIsEmpty ? 'hello' : ''}`}>
+        {deckIsEmpty ? (
+          <>
+            <p style={{ fontSize: '2em' }}>
+              Hey there friend!
+            </p>
+            <p>
+              Pick some cards below to create your ultimate deck!
+            </p>
+            <p>
+              The URL updates as you go, so copy paste at any time to
+              share your build!
+            </p>
+          </>
+        ) : null}
         {myDeck
           .reduce((acc, c) => {
             const order = c.type === 'Personality' ? 1000 : c.cost;
@@ -104,8 +152,8 @@ export default function App() {
             return acc;
           }, [])
           .map((cardsOfCost) => (
-            cardsOfCost
-              .map((c) => (
+            <div className="row">
+              {cardsOfCost.map((c) => (
                 <Card
                   card={c}
                   onClick={() => {
@@ -116,14 +164,15 @@ export default function App() {
                   }}
                   key={c.id}
                 />
-              ))
+              ))}
+            </div>
           ))
           .reverse()
-          .map((cardsOfCost) => [...cardsOfCost, <br />])
           .flat(1)}
         {// Character art in background
           myCharacters.map((c, i) => (
             <div
+              key={c}
               className="characterArt"
               style={{
                 zIndex: (i + 1) * -1,
@@ -143,47 +192,98 @@ export default function App() {
               }}
             />
           ))
-}
+        }
       </div>
       <div className="filters">
-        {['All', 'Personality', 'Buff', 'Debuff', 'Weapon', 'Companion', 'Wild', 'Trap'].map((t) => (
-          <label htmlFor={t} style={t === cardFilter ? { textDecoration: 'underline' } : null}>
-            <input
-              id={t}
-              style={{ display: 'none' }}
-              type="radio"
-              name="cardFilters"
-              value={t}
-              checked={t === cardFilter}
-              onChange={() => setCardFilter(t)}
-            />
-            {t}
-          </label>
-        ))}
-      </div>
-      {allCards
-        .filter((c) => (
-          cardFilter !== 'All'
-            ? c.type === cardFilter
-            : c.type !== 'Personality'
-        ))
-        .map((c) => (
-          <Card
-            card={c}
-            equipped={myDeck.find((m) => m.id === c.id)}
-            onClick={() => {
-              const i = myDeck.findIndex((m) => m.id === c.id);
-              if (i >= 0) {
-                const newDeck = [...myDeck];
-                newDeck.splice(i, 1);
-                setMyDeck(newDeck);
-              } else {
-                setMyDeck([...myDeck, c]);
-              }
-            }}
-            key={c.id}
+        <div className="cardTypes">
+          {['All', 'Personality', 'Buff', 'Debuff', 'Weapon', 'Helper', 'Wild', 'Trap'].map((t) => (
+            <label
+              key={t}
+              htmlFor={t}
+              style={t === cardFilter ? { textDecoration: 'underline' } : null}
+            >
+              <input
+                id={t}
+                style={{ display: 'none' }}
+                type="radio"
+                name="cardFilters"
+                value={t}
+                checked={t === cardFilter}
+                onChange={() => setCardFilter(t)}
+              />
+              {t}
+            </label>
+          ))}
+        </div>
+        <div>
+          Sort:&nbsp;
+          <Select
+            components={{ DropdownIndicator: () => null, IndicatorSeparator: () => null }}
+            isSearchable={false}
+            className="react-select"
+            placeholder={cardSort}
+            options={[
+              { value: 'id', label: 'ID' },
+              { value: 'cost', label: 'Cost' },
+              { value: 'type', label: 'Type' },
+              // { value: 'rarity', label: 'Rarity' },
+            ]}
+            unstyled
+            value={cardSort}
+            onChange={(option) => setCardSort(option.value)}
+            clearable={false}
           />
-        ))}
+        </div>
+      </div>
+      <div className="content">
+        {allCards
+          .filter((c) => (
+            cardFilter !== 'All'
+              ? c.type === cardFilter
+              : c.type !== 'Personality'
+          ))
+          .sort(cardSorters[cardSort])
+          .map((c) => (
+            <Card
+              card={c}
+              equipped={myDeck.find((m) => m.id === c.id)}
+              onClick={() => {
+                const i = myDeck.findIndex((m) => m.id === c.id);
+                if (i >= 0) {
+                  const newDeck = [...myDeck];
+                  newDeck.splice(i, 1);
+                  setMyDeck(newDeck);
+                } else {
+                  setMyDeck([...myDeck, c]);
+                }
+              }}
+              key={c.id}
+            />
+          ))}
+      </div>
+      <footer>
+        <div>
+          <a href="https://friendsvsfriends.com">Friends vs Friends</a>
+          {' '}
+          is created by
+          {' '}
+          <a href="https://brainwashgang.com/">Brainwash Gang</a>
+          {' '}
+          and published by
+          {' '}
+          <a href="https://rawfury.com/">Raw Fury</a>
+        </div>
+        <br />
+        <div>
+          FvF-Decks is an
+          {' '}
+          <a href="https://github.com/KarlTheCool/fvf-decks">open-source project</a>
+          {' '}
+          maintained with 💔 by
+          {' '}
+          <a href="https://ka.rlphilli.ps/">Karl Phillips</a>
+        </div>
+      </footer>
     </div>
   );
 }
