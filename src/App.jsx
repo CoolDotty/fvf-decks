@@ -147,8 +147,9 @@ export default function App() {
       </div>
       <div className="filters">
         {['All', 'Personality', 'Buff', 'Debuff', 'Weapon', 'Companion', 'Wild', 'Trap'].map((t) => (
-          <label style={t === cardFilter ? { textDecoration: 'underline' } : null}>
+          <label htmlFor={t} style={t === cardFilter ? { textDecoration: 'underline' } : null}>
             <input
+              id={t}
               style={{ display: 'none' }}
               type="radio"
               name="cardFilters"
@@ -161,7 +162,11 @@ export default function App() {
         ))}
       </div>
       {allCards
-        .filter((c) => (cardFilter !== 'All' ? c.type === cardFilter : true))
+        .filter((c) => (
+          cardFilter !== 'All'
+            ? c.type === cardFilter
+            : c.type !== 'Personality'
+        ))
         .map((c) => (
           <Card
             card={c}
