@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/fvf-decks/static/css/main.26924ae2.css",
-    "main.js": "/fvf-decks/static/js/main.d440eeb0.js",
-    "static/media/kenyan_coffee_rg.otf": "/fvf-decks/static/media/kenyan_coffee_rg.f422e407e44f177b62ab.otf",
-    "static/media/Friendly_Fire.ttf": "/fvf-decks/static/media/Friendly_Fire.104d550b2ca14e67fcd5.ttf",
-    "index.html": "/fvf-decks/index.html",
-    "main.26924ae2.css.map": "/fvf-decks/static/css/main.26924ae2.css.map",
-    "main.d440eeb0.js.map": "/fvf-decks/static/js/main.d440eeb0.js.map"
+    "main.css": "/static/css/main.aa19f535.css",
+    "main.js": "/static/js/main.d440eeb0.js",
+    "static/media/kenyan_coffee_rg.otf": "/static/media/kenyan_coffee_rg.f422e407e44f177b62ab.otf",
+    "static/media/Friendly_Fire.ttf": "/static/media/Friendly_Fire.104d550b2ca14e67fcd5.ttf",
+    "index.html": "/index.html",
+    "main.aa19f535.css.map": "/static/css/main.aa19f535.css.map",
+    "main.d440eeb0.js.map": "/static/js/main.d440eeb0.js.map"
   },
   "entrypoints": [
-    "static/css/main.26924ae2.css",
+    "static/css/main.aa19f535.css",
     "static/js/main.d440eeb0.js"
   ]
 }
