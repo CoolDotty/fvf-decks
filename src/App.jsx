@@ -112,14 +112,14 @@ export default function App() {
         <div className="costMenu">
           <span>
             Cost:
-            &nbsp;
+            {' '}
             {deckCost > MAX_COST ? <b style={{ color: 'red' }}>{deckCost}</b> : deckCost}
             /
             {MAX_COST}
           </span>
           <span>
             Count:
-            &nbsp;
+            {' '}
             {deckCount < MIN_CARDS ? <b style={{ color: 'red' }}>{deckCount}</b> : deckCount}
             /
             {MIN_CARDS}
