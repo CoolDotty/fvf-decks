@@ -97,7 +97,7 @@ export default function App() {
     .reduce((acc, c) => acc + c.cost, 0);
   const deckCount = myCards
     .length;
-  
+
   const deckIsEmpty = myDeck.length <= 0;
 
   return (
@@ -151,8 +151,9 @@ export default function App() {
             }
             return acc;
           }, [])
-          .map((cardsOfCost) => (
-            <div className="row">
+          .map((cardsOfCost, rowIndex) => (
+            // eslint-disable-next-line react/no-array-index-key
+            <div className="row" key={rowIndex}>
               {cardsOfCost.map((c) => (
                 <Card
                   card={c}
@@ -162,7 +163,7 @@ export default function App() {
                     newDeck.splice(i, 1);
                     setMyDeck(newDeck);
                   }}
-                  key={c.id}
+                  key={`mydeck${c.id}`}
                 />
               ))}
             </div>
@@ -172,7 +173,7 @@ export default function App() {
         {// Character art in background
           myCharacters.map((c, i) => (
             <div
-              key={c}
+              key={`charart${c.name}`}
               className="characterArt"
               style={{
                 zIndex: (i + 1) * -1,
@@ -198,7 +199,7 @@ export default function App() {
         <div className="cardTypes">
           {['All', 'Personality', 'Buff', 'Debuff', 'Weapon', 'Helper', 'Wild', 'Trap'].map((t) => (
             <label
-              key={t}
+              key={`cardtype${t}`}
               htmlFor={t}
               style={t === cardFilter ? { textDecoration: 'underline' } : null}
             >
@@ -257,7 +258,7 @@ export default function App() {
                   setMyDeck([...myDeck, c]);
                 }
               }}
-              key={c.id}
+              key={`content${c.id}`}
             />
           ))}
       </div>
