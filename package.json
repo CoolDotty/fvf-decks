@@ -1,7 +1,7 @@
 {
   "name": "fvf-decks",
   "version": "0.1.0",
-  "homepage": "https://ka.rlphilli.ps/fvf-decks",
+  "homepage": "https://friendsvsfriends.help",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
