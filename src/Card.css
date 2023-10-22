@@ -1,0 +1,104 @@
+.cardContainer {
+  display: grid;
+  place-items: start center;
+  width: 11rem;
+  height: 15rem;
+}
+
+.card {
+  position: relative;
+  display: block;
+  border-top: 0.25rem solid transparent;
+  border-left: 0.25rem solid transparent;
+  border-right: 0.25rem solid transparent;
+  border-bottom: 0.25rem solid transparent;
+  border-radius: 0.5rem;
+
+  transition: transform 0.1s, border-color 0.1s;
+  transform-style: preserve-3d;
+  transform: scale(0.9) perspective(5000px) rotateY(var(--rotateX)) rotateX(var(--rotateY));
+}
+
+.cardContainer:hover > .card {
+  transform: scale(1.0) perspective(5000px) rotateY(var(--rotateX)) rotateX(var(--rotateY));
+  border-color: rgb(28, 242, 114) !important
+}
+
+.card:active {
+  border-color: rgb(28, 242, 114) !important
+}
+
+.card.equipped::before {
+  content: '';
+  background-color: white;
+  position: absolute;
+  inset: 0;
+}
+
+.cardContainer:hover > .card.equipped::before {
+  background-color: rgb(28, 242, 114);
+}
+
+.card::after {
+  content: 'Equipped';
+  display: none;
+  text-transform: uppercase;
+  position: absolute;
+  color: black;
+  text-shadow: none;
+  font-size: 1.25rem;
+  letter-spacing: initial;
+  bottom: -1.3rem;
+  right: 0.5rem;
+}
+
+.card.equipped {
+  border-left-width: 0.5rem;
+  border-right-width: 0.5rem;
+  border-bottom-width: 1.5rem;
+  
+  margin-left: 0;
+  margin-right: 0;
+  margin-bottom: 0;
+
+  border-color: white;
+}
+
+.card.equipped::after {
+  display: block;
+}
+
+.card > .cardContent {
+  position: relative;
+  width: 10rem;
+  aspect-ratio: 5/7;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 0.5rem;
+}
+
+.card > .cardContent > .cost {
+  position: absolute;
+  top: 0;
+  right: 2%;
+  width: 16%;
+  aspect-ratio: 1/1;
+  background-size: cover;
+  background-repeat: no-repeat;
+  pointer-events: none;
+}
+
+.card > .cardContent > .level {
+  position: absolute;
+  top: 1%;
+  left: 50%;
+  width: 17%;
+  aspect-ratio: 2/1;
+  background-size: contain;
+  transform: translateX(-50%);
+  background-position: center;
+  background-repeat: no-repeat;
+  pointer-events: none;
+  opacity: 0.8;
+}

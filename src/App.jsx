@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import Select from 'react-select';
+import Card from './Card';
 
 // Compressed decks strings seem to be longer than uncompressed ones
 // import { compressUrlSafe, decompressUrlSafe } from 'urlsafe-lzma';
@@ -11,38 +12,6 @@ import Select from 'react-select';
 import {
   allCards, personalityToId, defaultCardSort,
 } from './const';
-
-function Card(props) {
-  const { card, equipped, ...rest } = props;
-  const {
-    name, img, cost, type,
-  } = card;
-  return (
-    <div
-      className={`card ${equipped ? 'equipped' : ''}`}
-      title={name}
-      {...rest}
-    >
-      <div
-        className={`cardContent cost${cost}`}
-        style={{ backgroundImage: `url("cards/${img}")` }}
-      >
-        <div
-          className="cost"
-          style={{ backgroundImage: `url("cost/card_cost_icon_${cost}.png")` }}
-        />
-        <div
-          className="level"
-          style={{
-            backgroundImage: type === 'Personality'
-              ? 'url("level/card_lvl_10.png")'
-              : 'url("level/card_lvl_max.png")',
-          }}
-        />
-      </div>
-    </div>
-  );
-}
 
 const MAX_COST = 50;
 const MIN_CARDS = 25;
@@ -199,9 +168,9 @@ export default function App() {
         <div className="cardTypes">
           {['All', 'Personality', 'Buff', 'Debuff', 'Weapon', 'Helper', 'Wild', 'Trap'].map((t) => (
             <label
+              className={`filterButton ${t === cardFilter ? 'checked' : ''}`}
               key={`cardtype${t}`}
               htmlFor={t}
-              style={t === cardFilter ? { textDecoration: 'underline' } : null}
             >
               <input
                 id={t}
@@ -212,11 +181,13 @@ export default function App() {
                 checked={t === cardFilter}
                 onChange={() => setCardFilter(t)}
               />
-              {t}
+              <div>
+                {t}
+              </div>
             </label>
           ))}
         </div>
-        <div>
+        <div style={{ display: 'flex', alignItems: 'center' }}>
           Sort:&nbsp;
           <Select
             components={{ DropdownIndicator: () => null, IndicatorSeparator: () => null }}
