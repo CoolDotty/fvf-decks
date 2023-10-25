@@ -5,6 +5,7 @@ import { useSearchParams } from 'react-router-dom';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import Select from 'react-select';
 import Card from './Card';
+import Radio from './Radio';
 
 // Compressed decks strings seem to be longer than uncompressed ones
 // import { compressUrlSafe, decompressUrlSafe } from 'urlsafe-lzma';
@@ -166,46 +167,20 @@ export default function App() {
       </div>
       <div className="filters">
         <div className="cardTypes">
-          {[
-            { type: 'All', icon: null },
-            { type: 'Personality', icon: 'personality_icon.png' },
-            { type: 'Buff', icon: 'buff_icon.png' },
-            { type: 'Debuff', icon: 'debuff_icon.png' },
-            { type: 'Weapon', icon: 'weapon_icon.png' },
-            { type: 'Helper', icon: 'helper_icon.png' },
-            { type: 'Wild', icon: 'wild_icon.png' },
-            { type: 'Trap', icon: 'trap_icon.png' },
-          ].map((filterOption) => (
-            <label
-              className={`filterButton ${filterOption.type === cardFilter ? 'checked' : ''
-              }`}
-              key={`cardtype${filterOption.type}`}
-              htmlFor={filterOption.type}
-              style={{
-                display: 'flex',
-                alignItems: 'center', // Center vertically
-                justifyContent: 'center', // Center horizontally
-              }}
-            >
-              <input
-                id={filterOption.type}
-                style={{ display: 'none' }}
-                type="radio"
-                name="cardFilters"
-                value={filterOption.type}
-                checked={filterOption.type === cardFilter}
-                onChange={() => setCardFilter(filterOption.type)}
-              />
-              {filterOption.icon ? (
-                <img
-                  src={`/icons/${filterOption.icon}`}
-                  alt={filterOption.type}
-                  style={{ width: '1em', height: '1em' }}
-                />
-              ) : null}
-              {filterOption.type === 'All' ? <div>All</div> : ''}
-            </label>
-          ))}
+          <Radio
+            options={[
+              { label: 'All', value: 'All', icon: null },
+              { label: 'Personality', value: 'Personality', icon: 'personality_icon.png' },
+              { label: 'Buff', value: 'Buff', icon: 'buff_icon.png' },
+              { label: 'Debuff', value: 'Debuff', icon: 'debuff_icon.png' },
+              { label: 'Weapon', value: 'Weapon', icon: 'weapon_icon.png' },
+              { label: 'Helper', value: 'Helper', icon: 'helper_icon.png' },
+              { label: 'Wild', value: 'Wild', icon: 'wild_icon.png' },
+              { label: 'Trap', value: 'Trap', icon: 'trap_icon.png' },
+            ]}
+            value={cardFilter}
+            onChange={setCardFilter}
+          />
         </div>
         <div style={{ display: 'flex', alignItems: 'center' }}>
           Sort:&nbsp;

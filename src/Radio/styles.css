@@ -1,0 +1,51 @@
+
+.radio {
+  background-color: rgb(242, 175, 28);
+  border: solid rgb(200, 144, 21) 0;
+  border-bottom: solid rgb(200, 144, 21) 0.2em;
+  outline: solid black 0.1em;
+  border-radius: 0.5rem;
+  padding: 0.1rem 0.5rem;
+  padding-bottom: 0.5rem;
+  user-select: none;
+
+  transition: border-color 0.1s, background-color 0.1s, color 0.1s, outline 0.1s;
+}
+
+.radio:hover {
+  border-color: transparent;
+  outline: solid white 0.1em;
+}
+
+.radio:active {
+  border-color: transparent;
+  background-color: white;
+}
+
+.radio.checked {
+  border-color: transparent;
+  background-color: white;
+  color: rgb(255, 71, 178);
+}
+
+.radio > div {
+  transition: transform 0.1s;
+  transform: scale(1.0);
+}
+
+.radio:hover > div,
+.radio:active > div,
+.radio.checked > div {
+  transform: scale(0.9);
+}
+
+.radio > * {
+  transition: transform 0.1s;
+  transform: scale(1.0);
+}
+
+.radio:hover > *,
+.radio:active > *,
+.radio.checked > * {
+  transform: scale(0.9);
+}
