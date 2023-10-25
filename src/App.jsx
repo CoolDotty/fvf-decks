@@ -165,25 +165,46 @@ export default function App() {
         }
       </div>
       <div className="filters">
-        <div className="cardTypes">
-          {['All', 'Personality', 'Buff', 'Debuff', 'Weapon', 'Helper', 'Wild', 'Trap'].map((t) => (
+      <div className='cardTypes'>
+          {[
+            { type: 'All', icon: null },
+            { type: 'Personality', icon: 'personality_icon.png' },
+            { type: 'Buff', icon: 'buff_icon.png' },
+            { type: 'Debuff', icon: 'debuff_icon.png' },
+            { type: 'Weapon', icon: 'weapon_icon.png' },
+            { type: 'Helper', icon: 'helper_icon.png' },
+            { type: 'Wild', icon: 'wild_icon.png' },
+            { type: 'Trap', icon: 'trap_icon.png' },
+          ].map((filterOption) => (
             <label
-              className={`filterButton ${t === cardFilter ? 'checked' : ''}`}
-              key={`cardtype${t}`}
-              htmlFor={t}
+              className={`filterButton ${
+                filterOption.type === cardFilter ? 'checked' : ''
+              }`}
+              key={`cardtype${filterOption.type}`}
+              htmlFor={filterOption.type}
+              style={{
+                display: 'flex',
+                alignItems: 'center', // Center vertically
+                justifyContent: 'center', // Center horizontally
+              }}
             >
               <input
-                id={t}
+                id={filterOption.type}
                 style={{ display: 'none' }}
-                type="radio"
-                name="cardFilters"
-                value={t}
-                checked={t === cardFilter}
-                onChange={() => setCardFilter(t)}
+                type='radio'
+                name='cardFilters'
+                value={filterOption.type}
+                checked={filterOption.type === cardFilter}
+                onChange={() => setCardFilter(filterOption.type)}
               />
-              <div>
-                {t}
-              </div>
+              {filterOption.icon ? (
+                <img
+                  src={`/icons/${filterOption.icon}`}
+                  alt={filterOption.type}
+                  style={{ width: '50px', height: '50px' }}
+                />
+              ) : null}
+              {filterOption.type === 'All' ? 'All' : ''}
             </label>
           ))}
         </div>
