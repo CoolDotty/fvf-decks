@@ -3,9 +3,9 @@ import './App.css';
 import React, { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 // eslint-disable-next-line import/no-extraneous-dependencies
-import Select from 'react-select';
 import Card from './Card';
 import Radio from './Radio';
+import DropDown from './DropDown';
 
 // Compressed decks strings seem to be longer than uncompressed ones
 // import { compressUrlSafe, decompressUrlSafe } from 'urlsafe-lzma';
@@ -184,21 +184,15 @@ export default function App() {
         </div>
         <div style={{ display: 'flex', alignItems: 'center' }}>
           Sort:&nbsp;
-          <Select
-            components={{ DropdownIndicator: () => null, IndicatorSeparator: () => null }}
-            isSearchable={false}
-            className="react-select"
-            placeholder={cardSort}
+          <DropDown
             options={[
               { value: 'id', label: 'ID' },
               { value: 'cost', label: 'Cost' },
               { value: 'type', label: 'Type' },
               // { value: 'rarity', label: 'Rarity' },
             ]}
-            unstyled
             value={cardSort}
             onChange={(option) => setCardSort(option.value)}
-            clearable={false}
           />
         </div>
       </div>

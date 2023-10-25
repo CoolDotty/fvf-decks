@@ -9,6 +9,20 @@
   padding-bottom: 0.5rem;
   user-select: none;
 
+  font-family: 'Friendly Fire';
+  text-transform: uppercase;
+  text-shadow:
+    /* Basic Outline */
+    -0.1em -0.1em 0 #000,
+     0.1em -0.1em 0 #000,
+    -0.1em  0.1em 0 #000,
+     0.1em  0.1em 0 #000,
+     0.0em -0.1em 0 #000,
+     0.1em  0.0em 0 #000,
+     0.0em  0.1em 0 #000,
+    -0.1em  0.0em 0 #000;
+  letter-spacing: 0.1em;
+
   transition: border-color 0.1s, background-color 0.1s, color 0.1s, outline 0.1s;
 }
 
