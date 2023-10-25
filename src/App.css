@@ -34,14 +34,14 @@ html, body {
   max-width: 90rem;
 }
 
-.filterButton > div {
+.filterButton > * {
     transition: transform 0.1s;
     transform: scale(1.0);
 }
 
-.filterButton:hover > div,
-.filterButton:active > div,
-.filterButton.checked > div {
+.filterButton:hover > *,
+.filterButton:active > *,
+.filterButton.checked > * {
     transform: scale(0.9);
 }
 

@@ -200,10 +200,10 @@ export default function App() {
                 <img
                   src={`/icons/${filterOption.icon}`}
                   alt={filterOption.type}
-                  style={{ width: '50px', height: '50px' }}
+                  style={{ width: '1em', height: '1em' }}
                 />
               ) : null}
-              {filterOption.type === 'All' ? 'All' : ''}
+              {filterOption.type === 'All' ? <div>All</div> : ''}
             </label>
           ))}
         </div>
