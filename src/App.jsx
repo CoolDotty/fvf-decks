@@ -165,7 +165,7 @@ export default function App() {
         }
       </div>
       <div className="filters">
-      <div className='cardTypes'>
+        <div className="cardTypes">
           {[
             { type: 'All', icon: null },
             { type: 'Personality', icon: 'personality_icon.png' },
@@ -177,8 +177,7 @@ export default function App() {
             { type: 'Trap', icon: 'trap_icon.png' },
           ].map((filterOption) => (
             <label
-              className={`filterButton ${
-                filterOption.type === cardFilter ? 'checked' : ''
+              className={`filterButton ${filterOption.type === cardFilter ? 'checked' : ''
               }`}
               key={`cardtype${filterOption.type}`}
               htmlFor={filterOption.type}
@@ -191,8 +190,8 @@ export default function App() {
               <input
                 id={filterOption.type}
                 style={{ display: 'none' }}
-                type='radio'
-                name='cardFilters'
+                type="radio"
+                name="cardFilters"
                 value={filterOption.type}
                 checked={filterOption.type === cardFilter}
                 onChange={() => setCardFilter(filterOption.type)}
