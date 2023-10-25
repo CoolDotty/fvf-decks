@@ -271,9 +271,7 @@ export default function App() {
           {' '}
           <a href="https://github.com/KarlTheCool/fvf-decks">open-source project</a>
           {' '}
-          maintained with 💔 by
-          {' '}
-          <a href="https://ka.rlphilli.ps/">Karl Phillips</a>
+          maintained with 💔 by all its contributors
         </div>
       </footer>
     </div>
