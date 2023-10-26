@@ -39,7 +39,7 @@
   background-color: white;
 }
 
-.Button.checked {
+.Button.forceActive  {
   border-color: transparent;
   background-color: white;
   color: rgb(255, 71, 178);
@@ -52,7 +52,7 @@
 
 .Button:hover > div,
 .Button:active > div,
-.Button.checked > div {
+.Button.forceActive > div {
   transform: scale(0.9);
 }
 
@@ -63,6 +63,6 @@
 
 .Button:hover > *,
 .Button:active > *,
-.Button.checked > * {
+.Button.forceActive > * {
   transform: scale(0.9);
 }
