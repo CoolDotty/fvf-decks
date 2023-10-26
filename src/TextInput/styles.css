@@ -1,0 +1,18 @@
+.TextInput {
+  background: none;
+  color: inherit;
+  border: none;
+
+  font-family: 'Friendly Fire';
+  font-size: 1.25rem;
+  letter-spacing: 0.1em;
+
+  background-color: rgb(22, 13, 46);
+  border: solid rgb(240 238 218) 0.25rem;
+  border-radius: 0.75rem;
+  padding: 0.5rem;
+}
+
+.TextInput:focus {
+  outline: none;
+}
