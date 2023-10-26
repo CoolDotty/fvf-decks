@@ -66,10 +66,15 @@ html, body {
     background-repeat: no-repeat;
 }
 
-.topMenu {
+.topMenuContainer {
     position: sticky;
     top: 1rem;
     z-index: 10;
+    margin-top: 1rem;
+    margin-bottom: 2.5rem;
+}
+
+.topMenu {
     display: flex;
     gap: 1rem;
     flex-wrap: wrap;
@@ -77,13 +82,32 @@ html, body {
     align-items: center;
 
     padding: 0.5rem 1rem ;
-    margin-top: 1rem;
-    margin-bottom: 2.5rem;
     border: solid rgb(68, 51, 154) 0;
     border-bottom: solid rgb(68, 51, 154) 0.1em;
     outline: solid black 0.1em;
     border-radius: 0.5rem;
     background-color: rgb(84, 64, 187);
+}
+
+.topMenu > * {
+    flex-basis: 1px;
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.topMenu > *:first-child {
+    justify-content: start;
+}
+
+.topMenu > *:last-child {
+    justify-content: end;
+}
+
+.topMenu > .costMenu {
+    display: flex;
+    gap: 1rem;
 }
 
 .title {
@@ -105,11 +129,38 @@ html, body {
         display: none;
     }
 }
-  
 
-.topMenu > .costMenu {
+.ShareMenu {
+    position: absolute;
+    bottom: 0;
+    right: 0.5rem; /* Same as .topMenu border radius */
+    z-index: -1;
+
     display: flex;
-    gap: 1rem;
+    align-items: center;
+
+    width: calc(100% - 1rem);
+    padding: 1rem;
+
+    background-color: rgb(42, 21, 82);
+    border: solid white 0.25rem;
+    border-top: rgb(42, 21, 82);
+    outline: solid black 0.25rem;
+    border-bottom-left-radius: 1rem; 
+    border-bottom-right-radius: 1rem; 
+
+    font-size: 0.7em;
+
+    transform-origin: top;
+    transition: transform 0.1s;
+}
+
+.ShareMenu > label {
+    flex: 0 0 auto;
+}
+
+.ShareMenu > input {
+    flex: 1 1 auto;
 }
 
 .filters {
@@ -141,6 +192,16 @@ html, body {
     flex-wrap: wrap;
     align-items: flex-start;
     margin: 0 1rem;
+    min-height: 30rem;
+}
+
+.content > .error {
+    display: grid;
+    place-items: center;
+    width: 100%;
+    min-height: 30rem;
+    opacity: 0.5;
+    text-align: center;
 }
 
 footer {

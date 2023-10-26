@@ -1,11 +1,13 @@
 import './reset.css';
 import './App.css';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useSearchParams } from 'react-router-dom';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import Card from './Card';
 import Radio from './Radio';
 import DropDown from './DropDown';
+import Button from './Button';
+import TextInput from './TextInput';
 
 // Compressed decks strings seem to be longer than uncompressed ones
 // import { compressUrlSafe, decompressUrlSafe } from 'urlsafe-lzma';
@@ -61,7 +63,30 @@ export default function App() {
   }, [myDeck, setSearchParams]);
 
   const [cardFilter, setCardFilter] = useState('All');
+  const [cardSearch, setCardSearch] = useState('');
   const [cardSort, setCardSort] = useState('id');
+  const [shareMenuOpen, setShareMenuOpen] = useState(false);
+  const [successfulCopies, setSuccessfulCopies] = useState([]);
+
+  const copyPasteRef = useRef();
+
+  const tryToCopy = async (e) => {
+    copyPasteRef.current.focus();
+    copyPasteRef.current.setSelectionRange(0, window.location.href.length);
+    try {
+      await navigator.clipboard.writeText(window.location.href);
+      setSuccessfulCopies((copies) => {
+        const c = [...copies, {
+          id: Date.now().toString(36), // :)
+          x: e.clientX,
+          y: e.clientY,
+        }];
+        return c;
+      });
+    } catch {
+      // It's all good, we open the fallback option regardless
+    }
+  };
 
   const deckCost = myCards
     .reduce((acc, c) => acc + c.cost, 0);
@@ -70,30 +95,78 @@ export default function App() {
 
   const deckIsEmpty = myDeck.length <= 0;
 
+  const filteredAndSortedContentCard = allCards
+    .filter((c) => (
+      cardFilter !== 'All'
+        ? c.type === cardFilter
+        : c.type !== 'Personality'
+    ))
+    .filter((c) => (
+      cardSearch.length > 0
+        ? c.name.toLowerCase().includes(cardSearch.toLowerCase())
+        : true
+    ))
+    .sort(cardSorters[cardSort]);
+
   return (
     <div className="App">
-      <div className="topMenu">
-        <div className="title">
-          <img className="logo" src="./favicon.ico" alt="" />
-          <span className="text">
-            FvF Deck Builder
-          </span>
+      {successfulCopies.map((s) => (
+        <CopiedPopup
+          key={s.id}
+          event={s}
+          onDone={() => {
+            setSuccessfulCopies((prevState) => prevState.filter((sc) => sc !== s));
+          }}
+        />
+      ))}
+      <div className="topMenuContainer">
+        <div className="topMenu">
+          <div className="title">
+            <img className="logo" src="./favicon.ico" alt="" />
+            <span className="text">
+              FvF Deck Builder
+            </span>
+          </div>
+          <div className="costMenu">
+            <span>
+              Cost:
+              {' '}
+              {deckCost > MAX_COST ? <b style={{ color: 'red' }}>{deckCost}</b> : deckCost}
+              /
+              {MAX_COST}
+            </span>
+            <span>
+              Count:
+              {' '}
+              {deckCount < MIN_CARDS ? <b style={{ color: 'red' }}>{deckCount}</b> : deckCount}
+              /
+              {MIN_CARDS}
+            </span>
+          </div>
+          <div>
+            <Button
+              onClick={() => setShareMenuOpen(!shareMenuOpen)}
+              label="Share"
+              forceActive={shareMenuOpen}
+            />
+          </div>
         </div>
-        <div className="costMenu">
-          <span>
-            Cost:
-            {' '}
-            {deckCost > MAX_COST ? <b style={{ color: 'red' }}>{deckCost}</b> : deckCost}
-            /
-            {MAX_COST}
-          </span>
-          <span>
-            Count:
-            {' '}
-            {deckCount < MIN_CARDS ? <b style={{ color: 'red' }}>{deckCount}</b> : deckCount}
-            /
-            {MIN_CARDS}
-          </span>
+        <div
+          className="ShareMenu"
+          style={{
+            transform: `translate(0%, 100%) scale(1.0, ${shareMenuOpen ? 1.0 : 0.0})`,
+          }}
+        >
+          {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
+          <label htmlFor="ShareCopyPastInput">Link:&nbsp;</label>
+          <TextInput
+            id="ShareCopyPastInput"
+            ref={copyPasteRef}
+            type="text"
+            value={window.location.href}
+            readOnly
+            onClick={tryToCopy}
+          />
         </div>
       </div>
       <div className={`myDeck ${deckIsEmpty ? 'hello' : ''}`}>
@@ -183,6 +256,14 @@ export default function App() {
           />
         </div>
         <div style={{ display: 'flex', alignItems: 'center' }}>
+          Search:&nbsp;
+          <TextInput
+            value={cardSearch}
+            onChange={setCardSearch}
+            style={{ width: 'calc(100% - 5em)' }}
+          />
+        </div>
+        <div style={{ display: 'flex', alignItems: 'center' }}>
           Sort:&nbsp;
           <DropDown
             options={[
@@ -197,30 +278,34 @@ export default function App() {
         </div>
       </div>
       <div className="content">
-        {allCards
-          .filter((c) => (
-            cardFilter !== 'All'
-              ? c.type === cardFilter
-              : c.type !== 'Personality'
-          ))
-          .sort(cardSorters[cardSort])
-          .map((c) => (
-            <Card
-              card={c}
-              equipped={myDeck.find((m) => m.id === c.id)}
-              onClick={() => {
-                const i = myDeck.findIndex((m) => m.id === c.id);
-                if (i >= 0) {
-                  const newDeck = [...myDeck];
-                  newDeck.splice(i, 1);
-                  setMyDeck(newDeck);
-                } else {
-                  setMyDeck([...myDeck, c]);
-                }
-              }}
-              key={`content${c.id}`}
-            />
-          ))}
+        {filteredAndSortedContentCard.length > 0
+          ? filteredAndSortedContentCard
+            .map((c) => (
+              <Card
+                card={c}
+                equipped={myDeck.find((m) => m.id === c.id)}
+                onClick={() => {
+                  const i = myDeck.findIndex((m) => m.id === c.id);
+                  if (i >= 0) {
+                    const newDeck = [...myDeck];
+                    newDeck.splice(i, 1);
+                    setMyDeck(newDeck);
+                  } else {
+                    setMyDeck([...myDeck, c]);
+                  }
+                }}
+                key={`content${c.id}`}
+              />
+            ))
+          : (
+            <div className="error">
+              No results for &ldquo;
+              {cardSearch}
+              &rdquo;
+              <br />
+              💔
+            </div>
+          )}
       </div>
       <footer>
         <div>
@@ -243,6 +328,39 @@ export default function App() {
           maintained with 💔 by all its contributors
         </div>
       </footer>
+    </div>
+  );
+}
+
+const COPIED_POPUP_TIMEOUT = 500;
+function CopiedPopup(props) {
+  const { event, onDone } = props;
+
+  const copiedRef = useRef();
+
+  useEffect(() => {
+    const me = copiedRef.current;
+    me.style.transition = `opacity ${COPIED_POPUP_TIMEOUT}ms, transform ${COPIED_POPUP_TIMEOUT}ms`;
+    me.style.opacity = 0.0;
+    me.style.transform = 'translate(-50%, -150%)';
+    setTimeout(onDone, COPIED_POPUP_TIMEOUT);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  return (
+    <div
+      aria-hidden
+      ref={copiedRef}
+      style={{
+        position: 'fixed',
+        top: `${event.y}px`,
+        left: `${event.x}px`,
+        zIndex: 999,
+        transform: 'translate(-50%, -50%)',
+        pointerEvents: 'none',
+      }}
+    >
+      Copied!
     </div>
   );
 }
