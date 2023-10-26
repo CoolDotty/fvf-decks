@@ -10,6 +10,4 @@ Refer to the [contributing file](contributing.md) for a beginner-friendly guide 
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), hosted statically with [gh-pages](https://github.com/tschaub/gh-pages).
 
-![image](https://github.com/KarlTheCool/fvf-decks/assets/10494276/d7c06325-0394-45a1-bcfc-a771725fe293)
-
-
+![image](https://github.com/KarlTheCool/fvf-decks/assets/10494276/3e81ff03-aa0b-4ebe-80e2-c756c0cf927c)
