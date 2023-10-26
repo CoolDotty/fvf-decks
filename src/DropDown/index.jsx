@@ -18,7 +18,7 @@ export default function DropDown(props) {
       options={options}
       unstyled
       value={value}
-      onChange={(option) => onChange(option.value)}
+      onChange={(option) => onChange(option)}
       clearable={false}
     />
   );
