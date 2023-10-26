@@ -4,7 +4,7 @@
 
 ## 🤝 Contributing
 
-Refer to the [contributing file](contributing.md) for a beginner-friendly guide on how you can contribute.
+Refer to the [contributing file](CONTRIBUTING.md) for a beginner-friendly guide on how you can contribute.
 
 <br>
 
