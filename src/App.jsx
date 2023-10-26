@@ -73,19 +73,21 @@ export default function App() {
   const tryToCopy = async (e) => {
     copyPasteRef.current.focus();
     copyPasteRef.current.setSelectionRange(0, window.location.href.length);
-    try {
-      await navigator.clipboard.writeText(window.location.href);
-      setSuccessfulCopies((copies) => {
-        const c = [...copies, {
-          id: Date.now().toString(36), // :)
-          x: e.clientX,
-          y: e.clientY,
-        }];
-        return c;
-      });
-    } catch {
-      // It's all good, we open the fallback option regardless
-    }
+    setTimeout(async () => {
+      try {
+        await navigator.clipboard.writeText(window.location.href);
+        setSuccessfulCopies((copies) => {
+          const c = [...copies, {
+            id: Date.now().toString(36), // :)
+            x: e.clientX,
+            y: e.clientY,
+          }];
+          return c;
+        });
+      } catch (err) {
+        // It's all good, we open the fallback option regardless
+      }
+    }, 0);
   };
 
   const deckCost = myCards
@@ -179,8 +181,7 @@ export default function App() {
               Pick some cards below to create your ultimate deck!
             </p>
             <p>
-              The URL updates as you go, so copy paste at any time to
-              share your build!
+              The URL updates as you go, so click share and the link when you are done!
             </p>
           </>
         ) : null}
