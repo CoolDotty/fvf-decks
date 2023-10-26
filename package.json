@@ -18,12 +18,14 @@
     "react-router-dom": "^6.16.0",
     "react-scripts": "5.0.1",
     "react-select": "^5.7.7",
+    "serve": "^14.2.1",
     "urlsafe-lzma": "^1.0.4",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
     "start": "export PUBLIC_URL='/'; react-scripts start",
     "build": "react-scripts build",
+    "debugProd": "yarn build; serve -s build",
     "test": "react-scripts test",
     "predeploy": "npm run build",
     "deploy": "yarn predeploy; gh-pages -d build",
