@@ -342,12 +342,12 @@ function CopiedPopup(props) {
   useEffect(() => {
     // This is neccesary in production builds. IDK why.
     // No, requestAnimationFrame does not work
-    setTimeout(() => {
+    requestAnimationFrame(() => {
       const me = copiedRef.current;
       me.style.opacity = 0.0;
       me.style.transform = 'translate(-50%, -150%)';
       setTimeout(onDone, COPIED_POPUP_TIMEOUT);
-    }, 1);
+    });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
