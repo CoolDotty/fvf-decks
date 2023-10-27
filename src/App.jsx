@@ -340,8 +340,6 @@ function CopiedPopup(props) {
   const copiedRef = useRef();
 
   useEffect(() => {
-    // This is neccesary in production builds. IDK why.
-    // No, requestAnimationFrame does not work
     requestAnimationFrame(() => {
       const me = copiedRef.current;
       me.style.opacity = 0.0;
