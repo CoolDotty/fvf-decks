@@ -23,9 +23,9 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "cross-env PUBLIC_URL='/'; react-scripts start",
+    "start": "export PUBLIC_URL='/'; react-scripts start",
     "build": "react-scripts build",
-    "debugProd": "yarn build && serve -s build",
+    "debugProd": "yarn build; serve -s build",
     "test": "react-scripts test",
     "predeploy": "npm run build",
     "deploy": "yarn predeploy; gh-pages -d build",
@@ -51,7 +51,6 @@
     ]
   },
   "devDependencies": {
-    "cross-env": "^7.0.3",
     "eslint-plugin-react": "^7.33.2"
   }
 }
