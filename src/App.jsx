@@ -181,7 +181,7 @@ export default function App() {
               Pick some cards below to create your ultimate deck!
             </p>
             <p>
-              The URL updates as you go, so click share and the link when you are done!
+              The URL updates as you go, so click share and copy the link when you are done!
             </p>
           </>
         ) : null}
