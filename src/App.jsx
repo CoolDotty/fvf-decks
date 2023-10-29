@@ -351,12 +351,12 @@ function CopiedPopup(props) {
   const copiedRef = useRef();
 
   useEffect(() => {
-    requestAnimationFrame(() => {
+    setTimeout(() => {
       const me = copiedRef.current;
       me.style.opacity = 0.0;
       me.style.transform = 'translate(-50%, -150%)';
       setTimeout(onDone, COPIED_POPUP_TIMEOUT);
-    });
+    }, 100);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
