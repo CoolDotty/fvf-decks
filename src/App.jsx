@@ -147,6 +147,10 @@ export default function App() {
           </div>
           <div>
             <Button
+              onClick={() => setMyDeck([])}
+              label="Reset"
+            />
+            <Button
               onClick={() => setShareMenuOpen(!shareMenuOpen)}
               label="Share"
               forceActive={shareMenuOpen}
