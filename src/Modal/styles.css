@@ -1,0 +1,35 @@
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgb(84, 64, 187);
+  border: solid rgb(200, 144, 21) 0;
+  outline: solid black 0.1em;
+  border-radius: 0.5rem;
+  padding: 2em;
+  z-index: 1000;
+  visibility: hidden;
+  width: 80%;
+  max-width: 500px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1em;
+}
+
+.modal.open {
+  visibility: visible;
+}
+
+.modal h2, .modal p {
+  margin: 0;
+}
+
+.modal button {
+  width: 100%;
+  padding: 1em;
+  box-sizing: border-box;
+  border-radius: 0.5rem;
+}
