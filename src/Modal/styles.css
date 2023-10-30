@@ -11,7 +11,7 @@
   z-index: 1000;
   visibility: hidden;
   width: 80%;
-  max-width: 450px;
+  max-width: 30rem;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
