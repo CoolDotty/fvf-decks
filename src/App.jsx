@@ -155,7 +155,10 @@ export default function App() {
             <Modal
               isOpen={isResetModalOpen}
               onCancel={() => setIsResetModalOpen(false)}
-              onConfirm={() => { setMyDeck([]); setIsResetModalOpen(false); }}
+              onConfirm={() => {
+                setMyDeck([]);
+                setIsResetModalOpen(false);
+              }}
             />
             <Button
               onClick={() => setShareMenuOpen(!shareMenuOpen)}
