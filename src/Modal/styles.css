@@ -1,7 +1,7 @@
 .modal {
   position: fixed;
   top: 50%;
-  left: 50%;
+  left: -50%;
   transform: translate(-50%, -50%);
   background-color: rgb(84, 64, 187);
   border: solid rgb(200, 144, 21) 0;
