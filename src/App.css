@@ -11,12 +11,22 @@
 html, body {
     background: rgb(42, 21, 82);
     color: white;
-    margin: 1rem;
 }
+
+body {
+    margin: 0.5rem;
+}
+
+@media (max-width: 750px) {
+    .App.App {
+        font-size: 1rem;
+    }
+}
+
 
 .App {    
   font-family: 'Friendly Fire';
-  font-size: 2em;
+  font-size: 2rem;
   text-transform: uppercase;
   text-shadow:
     /* Basic Outline */

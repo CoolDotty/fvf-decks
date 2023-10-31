@@ -1,18 +1,25 @@
 .cardContainer {
   display: grid;
   place-items: start center;
-  width: 11rem;
-  height: 15rem;
+  font-size: 1rem;
+  width: 11em;
+  height: 15em;
+}
+
+@media (max-width: 750px) {
+  .cardContainer {
+      font-size: 0.5rem;
+  }
 }
 
 .card {
   position: relative;
   display: block;
-  border-top: 0.25rem solid transparent;
-  border-left: 0.25rem solid transparent;
-  border-right: 0.25rem solid transparent;
-  border-bottom: 0.25rem solid transparent;
-  border-radius: 0.5rem;
+  border-top: 0.25em solid transparent;
+  border-left: 0.25em solid transparent;
+  border-right: 0.25em solid transparent;
+  border-bottom: 0.25em solid transparent;
+  border-radius: 0.5em;
 
   transition: transform 0.1s, border-color 0.1s;
   transform-style: preserve-3d;
@@ -46,16 +53,16 @@
   position: absolute;
   color: black;
   text-shadow: none;
-  font-size: 1.25rem;
+  font-size: 1.25em;
   letter-spacing: initial;
-  bottom: -1.3rem;
-  right: 0.5rem;
+  bottom: -1.0em;
+  right: 0.5em;
 }
 
 .card.equipped {
-  border-left-width: 0.5rem;
-  border-right-width: 0.5rem;
-  border-bottom-width: 1.5rem;
+  border-left-width: 0.5em;
+  border-right-width: 0.5em;
+  border-bottom-width: 1.5em;
   
   margin-left: 0;
   margin-right: 0;
@@ -70,12 +77,12 @@
 
 .card > .cardContent {
   position: relative;
-  width: 10rem;
+  width: 10em;
   aspect-ratio: 5/7;
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
-  border-radius: 0.5rem;
+  border-radius: 0.5em;
 }
 
 .card > .cardContent > .cost {

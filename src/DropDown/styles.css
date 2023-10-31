@@ -4,9 +4,9 @@
   border: solid rgb(200, 144, 21) 0;
   border-bottom: solid rgb(200, 144, 21) 0.2em;
   outline: solid black 0.1em;
-  border-radius: 0.5rem;
-  padding: 0 0.5rem;
-  padding-bottom: 0.5rem;
+  border-radius: 0.5em;
+  padding: 0 0.5em;
+  padding-bottom: 0.5em;
   user-select: none;
 
   transition: border-color 0.1s, background-color 0.1s, color 0.1s, outline 0.1s;
@@ -32,7 +32,7 @@
   border: solid rgb(200, 144, 21) 0;
   border-bottom: solid rgb(200, 144, 21) 0.2em;
   outline: solid black 0.1em;
-  border-radius: 0.5rem;
+  border-radius: 0.5em;
 }
 
 .react-select *[class$="option"] {
@@ -49,5 +49,9 @@
 .react-select *[class$="placeholder"],
 .react-select *[class$="singleValue"],
 .react-select *[class$="option"] {
-  padding: 0 1rem;
+  padding: 0 0.5em;
+}
+
+.react-select *[class$="control"] {
+  min-height: unset;
 }
