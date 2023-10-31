@@ -8,6 +8,7 @@ import Radio from './Radio';
 import DropDown from './DropDown';
 import Button from './Button';
 import TextInput from './TextInput';
+import Modal from './Modal';
 
 // Compressed decks strings seem to be longer than uncompressed ones
 // import { compressUrlSafe, decompressUrlSafe } from 'urlsafe-lzma';
@@ -67,6 +68,7 @@ export default function App() {
   const [cardSort, setCardSort] = useState('id');
   const [shareMenuOpen, setShareMenuOpen] = useState(false);
   const [successfulCopies, setSuccessfulCopies] = useState([]);
+  const [isResetModalOpen, setIsResetModalOpen] = useState(false);
 
   const copyPasteRef = useRef();
 
@@ -146,6 +148,18 @@ export default function App() {
             </span>
           </div>
           <div>
+            <Button
+              onClick={() => setIsResetModalOpen(!isResetModalOpen)}
+              label="Reset"
+            />
+            <Modal
+              isOpen={isResetModalOpen}
+              onCancel={() => setIsResetModalOpen(false)}
+              onConfirm={() => {
+                setMyDeck([]);
+                setIsResetModalOpen(false);
+              }}
+            />
             <Button
               onClick={() => setShareMenuOpen(!shareMenuOpen)}
               label="Share"

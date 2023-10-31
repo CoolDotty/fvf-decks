@@ -103,6 +103,7 @@ html, body {
 
 .topMenu > *:last-child {
     justify-content: end;
+    gap: 1rem;
 }
 
 .topMenu > .costMenu {
