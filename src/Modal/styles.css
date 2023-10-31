@@ -33,6 +33,24 @@
     visibility linear 0s 0s;
 }
 
+.modalBackdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  background-color: black;
+  pointer-events: none;
+  opacity: 0.0;
+  visibility: hidden;
+  transition: opacity ease 0.33s, visibility linear 0.0s 0.33s;
+}
+
+.modalBackdrop.open {
+  opacity: 0.75;
+  visibility: visible;
+  pointer-events: auto;
+  transition: opacity ease 0.33s, visibility linear 0s 0s;
+}
+
 .modal h2, .modal p {
   margin: 0;
   margin-bottom: 0.5rem;
