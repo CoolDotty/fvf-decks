@@ -1,6 +1,6 @@
 # Friends vs Friends Deck Builder
 
-[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/KarlTheCool/fvf-decks)
+https://friendsvsfriends.help/
 
 ## 🤝 Contributing
 
