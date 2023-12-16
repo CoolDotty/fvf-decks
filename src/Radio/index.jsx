@@ -31,7 +31,7 @@ export default function Radio(props) {
           />
           {o.icon ? (
             <img
-              src={`/icons/${o.icon}`}
+              src={`./icons/${o.icon}`}
               alt={o.label}
               style={{ width: '1em', height: '1em' }}
             />

@@ -52,6 +52,12 @@ export default function App() {
   const myCards = myDeck.filter((c) => c.type !== 'Personality');
   const myCharacters = myDeck.filter((c) => c.type === 'Personality');
 
+  /* eslint-disable no-unused-vars */
+  const isTestBuild = process.env.PUBLIC_URL === '';
+  const isFvFHelpBuild = process.env.PUBLIC_URL === 'https://friendsvsfriends.help';
+  const isItchBuild = process.env.PUBLIC_URL === '.';
+  /* eslint-enable no-unused-vars */
+
   useEffect(() => {
     if (myDeck.length > 0) {
       setSearchParams({
@@ -72,12 +78,13 @@ export default function App() {
 
   const copyPasteRef = useRef();
 
+  const shareableUrl = `friendsvsfriends.help/${window.location.search}`;
   const tryToCopy = async (e) => {
     copyPasteRef.current.focus();
-    copyPasteRef.current.setSelectionRange(0, window.location.href.length);
+    copyPasteRef.current.setSelectionRange(0, shareableUrl.length);
     setTimeout(async () => {
       try {
-        await navigator.clipboard.writeText(window.location.href);
+        await navigator.clipboard.writeText(shareableUrl);
         setSuccessfulCopies((copies) => {
           const c = [...copies, {
             id: Date.now().toString(36), // :)
@@ -179,7 +186,7 @@ export default function App() {
             id="ShareCopyPastInput"
             ref={copyPasteRef}
             type="text"
-            value={window.location.href}
+            value={`friendsvsfriends.help/${window.location.search}`}
             readOnly
             onClick={tryToCopy}
           />
@@ -194,9 +201,11 @@ export default function App() {
             <p>
               Pick some cards below to create your ultimate deck!
             </p>
-            <p>
-              The URL updates as you go, so click share and click the link to share your build!
-            </p>
+            {isItchBuild ? null : (
+              <p>
+                The URL updates as you go, so click share and click the link to share your build!
+              </p>
+            )}
           </>
         ) : null}
         {myDeck

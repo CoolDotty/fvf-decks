@@ -1,7 +1,6 @@
 {
   "name": "fvf-decks",
   "version": "0.1.0",
-  "homepage": "https://friendsvsfriends.help",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
@@ -24,11 +23,13 @@
   },
   "scripts": {
     "start": "export PUBLIC_URL='/'; react-scripts start",
-    "build": "react-scripts build",
+    "prebuild": "rm -rf build",
+    "build": "yarn prebuild; react-scripts build",
+    "build-fvfhelp": "export PUBLIC_URL='https://friendsvsfriends.help'; yarn build",
+    "build-itch": "export PUBLIC_URL='.'; yarn build; zip -r fvf-decks-itch.zip build",
     "debugProd": "yarn build; serve -s build",
     "test": "react-scripts test",
-    "predeploy": "npm run build",
-    "deploy": "yarn predeploy; gh-pages -d build",
+    "deploy": "yarn buildFvFHelp; gh-pages -d build",
     "eject": "react-scripts eject",
     "lint": "./node_modules/.bin/eslint \"**/*.{js,jsx}\" --fix"
   },
