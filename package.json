@@ -29,7 +29,7 @@
     "build-itch": "export PUBLIC_URL='.'; yarn build; zip -r fvf-decks-itch.zip build",
     "debugProd": "yarn build; serve -s build",
     "test": "react-scripts test",
-    "deploy": "yarn buildFvFHelp; gh-pages -d build",
+    "deploy": "yarn build-fvfhelp; gh-pages -d build",
     "eject": "react-scripts eject",
     "lint": "./node_modules/.bin/eslint \"**/*.{js,jsx}\" --fix"
   },
