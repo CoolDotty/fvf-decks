@@ -2,9 +2,10 @@ tasks:
   - init: yarn
     command: yarn start
 ports:
-    - name: Web
-      port: 3000
-      onOpen: ignore # create-react-app opens browser automatically
+  - name: Web
+    port: 3000
+    onOpen: ignore # create-react-app opens browser automatically
 vscode:
-    extensions:
-      - dbaeumer.vscode-eslint
+  extensions:
+    - dbaeumer.vscode-eslint
+    - esbenp.prettier-vscode

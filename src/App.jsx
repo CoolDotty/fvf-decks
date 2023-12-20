@@ -13,9 +13,7 @@ import Modal from './Modal';
 // Compressed decks strings seem to be longer than uncompressed ones
 // import { compressUrlSafe, decompressUrlSafe } from 'urlsafe-lzma';
 
-import {
-  allCards, personalityToId, defaultCardSort,
-} from './const';
+import { allCards, personalityToId, defaultCardSort } from './const';
 
 const MAX_COST = 50;
 const MIN_CARDS = 25;
@@ -34,10 +32,9 @@ const cardTypeValue = {
 const cardSorters = {
   id: defaultCardSort,
   cost: (a, b) => a.cost - b.cost,
-  type: (a, b) => (
-    a.type === b.type
-      ? defaultCardSort(a, b)
-      : cardTypeValue[a.type] - cardTypeValue[b.type]),
+  type: (a, b) => (a.type === b.type
+    ? defaultCardSort(a, b)
+    : cardTypeValue[a.type] - cardTypeValue[b.type]),
   // Rarity
 };
 
@@ -61,8 +58,7 @@ export default function App() {
   useEffect(() => {
     if (myDeck.length > 0) {
       setSearchParams({
-        deck: myDeck
-          .map((c) => c.id).join('.'),
+        deck: myDeck.map((c) => c.id).join('.'),
       });
     } else {
       setSearchParams({});
@@ -86,11 +82,14 @@ export default function App() {
       try {
         await navigator.clipboard.writeText(shareableUrl);
         setSuccessfulCopies((copies) => {
-          const c = [...copies, {
-            id: Date.now().toString(36), // :)
-            x: e.clientX,
-            y: e.clientY,
-          }];
+          const c = [
+            ...copies,
+            {
+              id: Date.now().toString(36), // :)
+              x: e.clientX,
+              y: e.clientY,
+            },
+          ];
           return c;
         });
       } catch (err) {
@@ -99,24 +98,16 @@ export default function App() {
     }, 0);
   };
 
-  const deckCost = myCards
-    .reduce((acc, c) => acc + c.cost, 0);
-  const deckCount = myCards
-    .length;
+  const deckCost = myCards.reduce((acc, c) => acc + c.cost, 0);
+  const deckCount = myCards.length;
 
   const deckIsEmpty = myDeck.length <= 0;
 
   const filteredAndSortedContentCard = allCards
-    .filter((c) => (
-      cardFilter !== 'All'
-        ? c.type === cardFilter
-        : c.type !== 'Personality'
-    ))
-    .filter((c) => (
-      cardSearch.length > 0
-        ? c.name.toLowerCase().includes(cardSearch.toLowerCase())
-        : true
-    ))
+    .filter((c) => (cardFilter !== 'All' ? c.type === cardFilter : c.type !== 'Personality'))
+    .filter((c) => (cardSearch.length > 0
+      ? c.name.toLowerCase().includes(cardSearch.toLowerCase())
+      : true))
     .sort(cardSorters[cardSort]);
 
   return (
@@ -134,22 +125,28 @@ export default function App() {
         <div className="topMenu">
           <div className="title">
             <img className="logo" src="./favicon.ico" alt="" />
-            <span className="text">
-              FvF Deck Builder
-            </span>
+            <span className="text">FvF Deck Builder</span>
           </div>
           <div className="costMenu">
             <span>
               Cost:
               {' '}
-              {deckCost > MAX_COST ? <b style={{ color: 'red' }}>{deckCost}</b> : deckCost}
+              {deckCost > MAX_COST ? (
+                <b style={{ color: 'red' }}>{deckCost}</b>
+              ) : (
+                deckCost
+              )}
               /
               {MAX_COST}
             </span>
             <span>
               Count:
               {' '}
-              {deckCount < MIN_CARDS ? <b style={{ color: 'red' }}>{deckCount}</b> : deckCount}
+              {deckCount < MIN_CARDS ? (
+                <b style={{ color: 'red' }}>{deckCount}</b>
+              ) : (
+                deckCount
+              )}
               /
               {MIN_CARDS}
             </span>
@@ -204,15 +201,12 @@ export default function App() {
       <div className={`myDeck ${deckIsEmpty ? 'hello' : ''}`}>
         {deckIsEmpty ? (
           <>
-            <p style={{ fontSize: '2em' }}>
-              Hey there friend!
-            </p>
-            <p>
-              Pick some cards below to create your ultimate deck!
-            </p>
+            <p style={{ fontSize: '2em' }}>Hey there friend!</p>
+            <p>Pick some cards below to create your ultimate deck!</p>
             {isItchBuild ? null : (
               <p>
-                The URL updates as you go, so click share and click the link to share your build!
+                The URL updates as you go, so click share and click the link to share your
+                build!
               </p>
             )}
           </>
@@ -246,7 +240,8 @@ export default function App() {
           ))
           .reverse()
           .flat(1)}
-        {// Character art in background
+        {
+          // Character art in background
           myCharacters.map((c, i) => (
             <div
               key={`charart${c.name}`}
@@ -254,12 +249,14 @@ export default function App() {
               style={{
                 zIndex: (i + 1) * -1,
                 // opacity: (myCharacters.length - i) * (0.75 / myCharacters.length),
-                backgroundImage: `url("characters/character_full_${personalityToId(c.name)}_default.png")`,
+                backgroundImage: `url("characters/character_full_${personalityToId(
+                  c.name,
+                )}_default.png")`,
                 backgroundSize: 'contain',
                 backgroundPosition: 'center right',
                 transform: `
                 translate(
-                  ${i * (-25 / myCharacters.length)}%, 
+                  ${i * (-25 / myCharacters.length)}%,
                   ${i * (-10 / myCharacters.length)}%
                 )
                 scale(
@@ -276,7 +273,11 @@ export default function App() {
           <Radio
             options={[
               { label: 'All', value: 'All', icon: null },
-              { label: 'Personality', value: 'Personality', icon: 'personality_icon.png' },
+              {
+                label: 'Personality',
+                value: 'Personality',
+                icon: 'personality_icon.png',
+              },
               { label: 'Buff', value: 'Buff', icon: 'buff_icon.png' },
               { label: 'Debuff', value: 'Debuff', icon: 'debuff_icon.png' },
               { label: 'Weapon', value: 'Weapon', icon: 'weapon_icon.png' },
@@ -311,34 +312,33 @@ export default function App() {
         </div>
       </div>
       <div className="content">
-        {filteredAndSortedContentCard.length > 0
-          ? filteredAndSortedContentCard
-            .map((c) => (
-              <Card
-                card={c}
-                equipped={myDeck.find((m) => m.id === c.id)}
-                onClick={() => {
-                  const i = myDeck.findIndex((m) => m.id === c.id);
-                  if (i >= 0) {
-                    const newDeck = [...myDeck];
-                    newDeck.splice(i, 1);
-                    setMyDeck(newDeck);
-                  } else {
-                    setMyDeck([...myDeck, c]);
-                  }
-                }}
-                key={`content${c.id}`}
-              />
-            ))
-          : (
-            <div className="error">
-              No results for &ldquo;
-              {cardSearch}
-              &rdquo;
-              <br />
-              💔
-            </div>
-          )}
+        {filteredAndSortedContentCard.length > 0 ? (
+          filteredAndSortedContentCard.map((c) => (
+            <Card
+              card={c}
+              equipped={myDeck.find((m) => m.id === c.id)}
+              onClick={() => {
+                const i = myDeck.findIndex((m) => m.id === c.id);
+                if (i >= 0) {
+                  const newDeck = [...myDeck];
+                  newDeck.splice(i, 1);
+                  setMyDeck(newDeck);
+                } else {
+                  setMyDeck([...myDeck, c]);
+                }
+              }}
+              key={`content${c.id}`}
+            />
+          ))
+        ) : (
+          <div className="error">
+            No results for &ldquo;
+            {cardSearch}
+            &rdquo;
+            <br />
+            💔
+          </div>
+        )}
       </div>
       <footer>
         <div>

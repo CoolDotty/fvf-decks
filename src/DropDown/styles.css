@@ -9,15 +9,19 @@
   padding-bottom: 0.5em;
   user-select: none;
 
-  transition: border-color 0.1s, background-color 0.1s, color 0.1s, outline 0.1s;
+  transition:
+    border-color 0.1s,
+    background-color 0.1s,
+    color 0.1s,
+    outline 0.1s;
 }
 
-.react-select *[class$="placeholder"] {
+.react-select *[class$='placeholder'] {
   transition: transform 0.1s;
-  transform: scale(1.0);
+  transform: scale(1);
 }
 
-.react-select:hover *[class$="placeholder"] {
+.react-select:hover *[class$='placeholder'] {
   transform: scale(0.9);
 }
 
@@ -27,7 +31,7 @@
 }
 
 /* I hate css in js :cry: */
-.react-select *[class$="menu"] {
+.react-select *[class$='menu'] {
   background-color: rgb(242, 175, 28);
   border: solid rgb(200, 144, 21) 0;
   border-bottom: solid rgb(200, 144, 21) 0.2em;
@@ -35,23 +39,25 @@
   border-radius: 0.5em;
 }
 
-.react-select *[class$="option"] {
-  transition: transform 0.1s, color 0.1s;
-  transform: scale(1.0);
+.react-select *[class$='option'] {
+  transition:
+    transform 0.1s,
+    color 0.1s;
+  transform: scale(1);
   color: white;
 }
 
-.react-select *[class$="option"]:hover {
+.react-select *[class$='option']:hover {
   transform: scale(0.9);
   color: rgb(255, 71, 178);
 }
 
-.react-select *[class$="placeholder"],
-.react-select *[class$="singleValue"],
-.react-select *[class$="option"] {
+.react-select *[class$='placeholder'],
+.react-select *[class$='singleValue'],
+.react-select *[class$='option'] {
   padding: 0 0.5em;
 }
 
-.react-select *[class$="control"] {
+.react-select *[class$='control'] {
   min-height: unset;
 }

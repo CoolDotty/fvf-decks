@@ -1,13 +1,9 @@
-import React, { } from 'react';
+import React from 'react';
 
 import './styles.css';
 
 export default function Radio(props) {
-  const {
-    options,
-    onChange,
-    value,
-  } = props;
+  const { options, onChange, value } = props;
 
   return (
     <>
@@ -30,12 +26,10 @@ export default function Radio(props) {
             onChange={() => onChange(o.value)}
           />
           {o.icon ? (
-            <img
-              src={`./icons/${o.icon}`}
-              alt={o.label}
-              style={{ width: '1em', height: '1em' }}
-            />
-          ) : <div>{o.label}</div>}
+            <img src={`./icons/${o.icon}`} alt={o.label} style={{ width: '1em', height: '1em' }} />
+          ) : (
+            <div>{o.label}</div>
+          )}
         </label>
       ))}
     </>

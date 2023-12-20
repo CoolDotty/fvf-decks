@@ -8,7 +8,7 @@
 
 @media (max-width: 750px) {
   .cardContainer {
-      font-size: 0.5rem;
+    font-size: 0.5rem;
   }
 }
 
@@ -21,18 +21,20 @@
   border-bottom: 0.25em solid transparent;
   border-radius: 0.5em;
 
-  transition: transform 0.1s, border-color 0.1s;
+  transition:
+    transform 0.1s,
+    border-color 0.1s;
   transform-style: preserve-3d;
   transform: scale(0.9) perspective(5000px) rotateY(var(--rotateX)) rotateX(var(--rotateY));
 }
 
 .cardContainer:hover > .card {
-  transform: scale(1.0) perspective(5000px) rotateY(var(--rotateX)) rotateX(var(--rotateY));
-  border-color: rgb(28, 242, 114) !important
+  transform: scale(1) perspective(5000px) rotateY(var(--rotateX)) rotateX(var(--rotateY));
+  border-color: rgb(28, 242, 114) !important;
 }
 
 .card:active {
-  border-color: rgb(28, 242, 114) !important
+  border-color: rgb(28, 242, 114) !important;
 }
 
 .card.equipped::before {
@@ -55,7 +57,7 @@
   text-shadow: none;
   font-size: 1.25em;
   letter-spacing: initial;
-  bottom: -1.0em;
+  bottom: -1em;
   right: 0.5em;
 }
 
@@ -63,7 +65,7 @@
   border-left-width: 0.5em;
   border-right-width: 0.5em;
   border-bottom-width: 1.5em;
-  
+
   margin-left: 0;
   margin-right: 0;
   margin-bottom: 0;

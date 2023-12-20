@@ -78,25 +78,24 @@ export default function Card(props) {
 
   return (
     <div className="cardContainer" ref={containerRef} {...rest}>
-      <div
-        className={`card ${equipped ? 'equipped' : ''}`}
-        title={name}
-        ref={contentRef}
-      >
+      <div className={`card ${equipped ? 'equipped' : ''}`} title={name} ref={contentRef}>
         <div
           className={`cardContent cost${cost}`}
           style={{ backgroundImage: `url("cards/${img}")` }}
         >
           <div
             className="cost"
-            style={{ backgroundImage: `url("cost/card_cost_icon_${cost}.png")` }}
+            style={{
+              backgroundImage: `url("cost/card_cost_icon_${cost}.png")`,
+            }}
           />
           <div
             className="level"
             style={{
-              backgroundImage: type === 'Personality'
-                ? 'url("level/card_lvl_10.png")'
-                : 'url("level/card_lvl_max.png")',
+              backgroundImage:
+                type === 'Personality'
+                  ? 'url("level/card_lvl_10.png")'
+                  : 'url("level/card_lvl_max.png")',
             }}
           />
         </div>

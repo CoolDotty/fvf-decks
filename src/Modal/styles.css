@@ -21,7 +21,7 @@
   transition:
     /* EaseInBack https://www.cssportal.com/css-cubic-bezier-generator/ */
     top cubic-bezier(0.6, -0.28, 0.735, 0.045) 0.33s 0s,
-    visibility linear 0.0s 0.33s;
+    visibility linear 0s 0.33s;
 }
 
 .modal.open {
@@ -29,7 +29,7 @@
   top: 50%;
   transition:
     /* EaseOutIn https://www.cssportal.com/css-cubic-bezier-generator/ */
-    top cubic-bezier( 0.175, 0.885, 0.32, 1.275 ) 0.33s 0s,
+    top cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.33s 0s,
     visibility linear 0s 0s;
 }
 
@@ -39,19 +39,24 @@
   z-index: 999;
   background-color: black;
   pointer-events: none;
-  opacity: 0.0;
+  opacity: 0;
   visibility: hidden;
-  transition: opacity ease 0.33s, visibility linear 0.0s 0.33s;
+  transition:
+    opacity ease 0.33s,
+    visibility linear 0s 0.33s;
 }
 
 .modalBackdrop.open {
   opacity: 0.75;
   visibility: visible;
   pointer-events: auto;
-  transition: opacity ease 0.33s, visibility linear 0s 0s;
+  transition:
+    opacity ease 0.33s,
+    visibility linear 0s 0s;
 }
 
-.modal h2, .modal p {
+.modal h2,
+.modal p {
   margin: 0;
   margin-bottom: 0.5rem;
   text-align: center;

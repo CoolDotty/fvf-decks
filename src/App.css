@@ -1,60 +1,60 @@
 @font-face {
-    font-family: 'Friendly Fire';
-    src: local('Friendly Fire'), url(../public/fonts/Friendly_Fire.ttf);
-}
-  
-@font-face {
-    font-family: 'Kenyan Coffee';
-    src: local('Kenyan Coffee'), url(../public/fonts/kenyan_coffee_rg.otf);
+  font-family: 'Friendly Fire';
+  src: local('Friendly Fire'), url(../public/fonts/Friendly_Fire.ttf);
 }
 
-html, body {
-    background: rgb(42, 21, 82);
-    color: white;
+@font-face {
+  font-family: 'Kenyan Coffee';
+  src: local('Kenyan Coffee'), url(../public/fonts/kenyan_coffee_rg.otf);
+}
+
+html,
+body {
+  background: rgb(42, 21, 82);
+  color: white;
 }
 
 body {
-    margin: 0.5rem;
+  margin: 0.5rem;
 }
 
 @media (max-width: 750px) {
-    .App.App {
-        font-size: 1rem;
-    }
+  .App.App {
+    font-size: 1rem;
+  }
 }
 
 a:link {
-    color: #f2af1c;
-    transition: color 0.1s;
+  color: #f2af1c;
+  transition: color 0.1s;
 }
 
 a:visited {
-    color: #c89015;
+  color: #c89015;
 }
 
 a:hover {
-    color: white;
+  color: white;
 }
 
 a:active {
-    color: rgb(255, 71, 178);
-} 
+  color: rgb(255, 71, 178);
+}
 
-
-.App {    
+.App {
   font-family: 'Friendly Fire';
   font-size: 2rem;
   text-transform: uppercase;
   text-shadow:
     /* Basic Outline */
     -0.1em -0.1em 0 #000,
-     0.1em -0.1em 0 #000,
-    -0.1em  0.1em 0 #000,
-     0.1em  0.1em 0 #000,
-     0.0em -0.1em 0 #000,
-     0.1em  0.0em 0 #000,
-     0.0em  0.1em 0 #000,
-    -0.1em  0.0em 0 #000;
+    0.1em -0.1em 0 #000,
+    -0.1em 0.1em 0 #000,
+    0.1em 0.1em 0 #000,
+    0em -0.1em 0 #000,
+    0.1em 0em 0 #000,
+    0em 0.1em 0 #000,
+    -0.1em 0em 0 #000;
   letter-spacing: 0.1em;
 
   margin: auto;
@@ -62,206 +62,206 @@ a:active {
 }
 
 .myDeck {
-    position: relative;
-    min-height: 30rem;
+  position: relative;
+  min-height: 30rem;
 }
 
 .myDeck.hello {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 1rem;
-    font-family: Kenyan Coffee;
-    font-size: 1.5rem;
-    text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  font-family: Kenyan Coffee;
+  font-size: 1.5rem;
+  text-align: center;
 }
 
 .myDeck.hello > p {
-    max-width: 40rem;
+  max-width: 40rem;
 }
 
 .myDeck > .row {
-    display: flex;
-    flex-wrap: wrap;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .myDeck > .characterArt {
-    position: absolute;
-    inset: 0;
-    z-index: -1;
-    background-repeat: no-repeat;
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-repeat: no-repeat;
 }
 
 .topMenuContainer {
-    position: sticky;
-    top: 1rem;
-    z-index: 10;
-    margin-top: 1rem;
-    margin-bottom: 2.5rem;
+  position: sticky;
+  top: 1rem;
+  z-index: 10;
+  margin-top: 1rem;
+  margin-bottom: 2.5rem;
 }
 
 .topMenu {
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
 
-    padding: 0.5rem 1rem ;
-    border: solid rgb(68, 51, 154) 0;
-    border-bottom: solid rgb(68, 51, 154) 0.1em;
-    outline: solid black 0.1em;
-    border-radius: 0.5rem;
-    background-color: rgb(84, 64, 187);
+  padding: 0.5rem 1rem;
+  border: solid rgb(68, 51, 154) 0;
+  border-bottom: solid rgb(68, 51, 154) 0.1em;
+  outline: solid black 0.1em;
+  border-radius: 0.5rem;
+  background-color: rgb(84, 64, 187);
 }
 
 .topMenu > * {
-    flex-basis: 1px;
-    flex-grow: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  flex-basis: 1px;
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .topMenu > *:first-child {
-    justify-content: start;
+  justify-content: start;
 }
 
 .topMenu > *:last-child {
-    justify-content: end;
-    gap: 1rem;
+  justify-content: end;
+  gap: 1rem;
 }
 
 .topMenu > .costMenu {
-    display: flex;
-    gap: 1rem;
+  display: flex;
+  gap: 1rem;
 }
 
 .title {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .title > .logo {
-    width: 1.5em;
-    aspect-ratio: 1/1;
+  width: 1.5em;
+  aspect-ratio: 1/1;
 }
 
 .title > .text {
-    margin-left: 1rem;
+  margin-left: 1rem;
 }
 
 @media (max-width: 750px) {
-    .title > .text {
-        display: none;
-    }
+  .title > .text {
+    display: none;
+  }
 }
 
 .ShareMenu {
-    position: absolute;
-    bottom: 0;
-    right: 0.5rem; /* Same as .topMenu border radius */
-    z-index: -1;
+  position: absolute;
+  bottom: 0;
+  right: 0.5rem; /* Same as .topMenu border radius */
+  z-index: -1;
 
-    width: calc(100% - 1rem);
-    padding: 1rem;
+  width: calc(100% - 1rem);
+  padding: 1rem;
 
-    background-color: rgb(42, 21, 82);
-    border: solid white 0.25rem;
-    border-top: rgb(42, 21, 82);
-    outline: solid black 0.25rem;
-    border-bottom-left-radius: 1rem; 
-    border-bottom-right-radius: 1rem; 
+  background-color: rgb(42, 21, 82);
+  border: solid white 0.25rem;
+  border-top: rgb(42, 21, 82);
+  outline: solid black 0.25rem;
+  border-bottom-left-radius: 1rem;
+  border-bottom-right-radius: 1rem;
 
-    font-size: 0.7em;
+  font-size: 0.7em;
 
-    transform-origin: top;
-    transition: transform 0.1s;
+  transform-origin: top;
+  transition: transform 0.1s;
 }
 
 .ShareContainer {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .ShareContainer > label {
-    flex: 0 0 auto;
+  flex: 0 0 auto;
 }
 
 .ShareContainer > input {
-    flex: 1 1 auto;
+  flex: 1 1 auto;
 }
 
 .DeckCheckCTA {
-    font-family: Kenyan Coffee;
-    font-size: 0.9em;
-    margin-top: 1rem;
-    text-align: right;
+  font-family: Kenyan Coffee;
+  font-size: 0.9em;
+  margin-top: 1rem;
+  text-align: right;
 }
 
 .filters {
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
 
-    padding: 0.5rem 1rem ;
-    margin-top: 1rem;
-    margin-bottom: 2.5rem;
-    border: solid rgb(68, 51, 154) 0;
-    border-bottom: solid rgb(68, 51, 154) 0.1em;
-    outline: solid black 0.1em;
-    border-radius: 0.5rem;
-    background-color: rgb(84, 64, 187);
+  padding: 0.5rem 1rem;
+  margin-top: 1rem;
+  margin-bottom: 2.5rem;
+  border: solid rgb(68, 51, 154) 0;
+  border-bottom: solid rgb(68, 51, 154) 0.1em;
+  outline: solid black 0.1em;
+  border-radius: 0.5rem;
+  background-color: rgb(84, 64, 187);
 }
 
 .filters > .cardTypes {
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
 }
 
 .content {
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
-    align-items: flex-start;
-    margin: 0 1rem;
-    min-height: 30rem;
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  margin: 0 1rem;
+  min-height: 30rem;
 }
 
 .content > .error {
-    display: grid;
-    place-items: center;
-    width: 100%;
-    min-height: 30rem;
-    opacity: 0.5;
-    text-align: center;
+  display: grid;
+  place-items: center;
+  width: 100%;
+  min-height: 30rem;
+  opacity: 0.5;
+  text-align: center;
 }
 
 footer {
-    opacity: 0.7;
-    margin-top: 20em;
-    margin-bottom: 3em;
-    color: white !important;
-    font-family: Kenyan Coffee;
-    font-size: 0.9rem;
-    text-align: right;
-    text-shadow:
+  opacity: 0.7;
+  margin-top: 20em;
+  margin-bottom: 3em;
+  color: white !important;
+  font-family: Kenyan Coffee;
+  font-size: 0.9rem;
+  text-align: right;
+  text-shadow:
         /* Basic Outline */
-        -1px -1px  0 #000,
-         1px -1px  0 #000,
-        -1px  1px  0 #000,
-         1px  1px  0 #000,
-         0   -1px  0 #000,
-         1px  0    0 #000,
-         0    1px  0 #000,
-        -1px  0    0 #000;
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000,
+    0 -1px 0 #000,
+    1px 0 0 #000,
+    0 1px 0 #000,
+    -1px 0 0 #000;
   letter-spacing: 0.15em;
 }
 
 footer a {
-    color: inherit !important;
+  color: inherit !important;
 }
