@@ -10,6 +10,7 @@ export const defaultCardSort = (a, b) => (a.batch === b.batch ? a.id - b.id : a.
 // 5 = Wired Wrecks
 // 6 = Halloween Update (2023)
 // 7 = Sable Santana BFF
+// 8 = Xmas Update (2023)
 
 const Card = (img, batch, type, name, cost) => ({
   id: parseInt(img.substring(5, 9), 10),
@@ -120,6 +121,7 @@ export const allCards = [
   Card('Card_1004_bake.png', 0, 'Personality', 'Badass', 2),
   Card('Card_0143_bake.png', 6, 'Helper', 'Bat Turret Lover', 2),
   Card('Card_0140_bake.png', 7, 'Helper', 'Laser Fence', 2),
+  Card('Card_0152_bake.png', 8, 'Wild', 'Present', 1),
 ].sort(defaultCardSort);
 
 export const cards = allCards.filter(({ type }) => type !== 'Personality');
