@@ -1,0 +1,47 @@
+#snowContainer {  
+  height: 100vh;
+  z-index: -1;
+  overflow: hidden;
+  position: fixed;
+  inset: 0;
+  transition: opacity 500ms;
+  width: 100%;
+}
+
+.snow {
+  animation: fall ease-in infinite, sway ease-in-out infinite;
+  color: skyblue;
+  position: absolute;
+  pointer-events: none;
+}
+
+@keyframes fall {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    top: 100vh;
+    opacity: 1;
+  }
+}
+
+@keyframes sway {
+  0% {
+    margin-left: 0;
+  }
+  25% {
+    margin-left: 50px;
+  }
+  50% {
+    margin-left: -50px;
+  }
+  75% {
+    margin-left: 50px;
+  }
+  100% {
+    margin-left: 0;
+  }
+}
