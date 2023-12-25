@@ -4,6 +4,8 @@ import './styles.css';
 // Snow comes from: https://codepen.io/tutsplus/pen/BaVqjvg
 
 const date = new Date();
+// Compare days by date only, not considering hours, minutes, etc
+date.setHours(0, 0, 0, 0);
 // months are 0 indexed
 const december1 = new Date(date.getFullYear(), 11, 1);
 const december25 = new Date(date.getFullYear(), 11, 25);
