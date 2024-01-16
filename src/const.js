@@ -11,6 +11,7 @@ export const defaultCardSort = (a, b) => (a.batch === b.batch ? a.id - b.id : a.
 // 6 = Halloween Update (2023)
 // 7 = Sable Santana BFF
 // 8 = Xmas Update (2023)
+// 9 = Nerdvana
 
 const Card = (img, batch, type, name, cost) => ({
   id: parseInt(img.substring(5, 9), 10),
@@ -122,6 +123,12 @@ export const allCards = [
   Card('Card_0143_bake.png', 6, 'Helper', 'Bat Turret Lover', 2),
   Card('Card_0140_bake.png', 7, 'Helper', 'Laser Fence', 2),
   Card('Card_0152_bake.png', 8, 'Wild', 'Present', 1),
+  Card('Card_0131_bake.png', 9, 'Weapon', 'Deep Fryer', 3),
+  Card('Card_0139_bake.png', 9, 'Wild', 'Shrink Spell', 4),
+  Card('Card_0147_bake.png', 9, 'Debuff', 'Silence!', 1),
+  Card('Card_0148_bake.png', 9, 'Buff', 'Reroll', 1),
+  Card('Card_0149_bake.png', 9, 'Helper', 'Dice Bomb', 1),
+  Card('Card_1017_bake.png', 9, 'Personality', 'Roleplay', 1),
 ].sort(defaultCardSort);
 
 export const cards = allCards.filter(({ type }) => type !== 'Personality');
@@ -140,4 +147,5 @@ export const personalityToId = (p) => ({
   'Dither & Banding': 'rat',
   'Reading Glasses': 'crocodile',
   Badass: 'doberman',
+  Roleplay: 'toad',
 })[p];
