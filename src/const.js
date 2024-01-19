@@ -63,7 +63,7 @@ export const allCards = [
   Card('Card_0044_bake.png', 0, 'Debuff', 'Garbage Day', 1),
   Card('Card_0058_bake.png', 0, 'Helper', 'Bear Trap', 1),
   Card('Card_0069_bake.png', 0, 'Weapon', 'Katana', 3),
-  Card('Card_0086_bake.png', 5, 'Debuff', 'Frozen Gun', 3),
+  Card('Card_0086_bake.png', 5, 'Debuff', 'Frozen Gun', 2),
   Card('Card_0100_bake.png', 0, 'Trap', 'Ninja Log', 2),
   Card('Card_0128_bake.png', 5, 'Wild', 'Warp Room', 2),
   Card('Card_1010_bake.png', 0, 'Personality', 'Runner', 2),
@@ -125,9 +125,9 @@ export const allCards = [
   Card('Card_0152_bake.png', 8, 'Wild', 'Present', 1),
   Card('Card_0131_bake.png', 9, 'Weapon', 'Deep Fryer', 3),
   Card('Card_0139_bake.png', 9, 'Wild', 'Shrink Spell', 4),
-  Card('Card_0147_bake.png', 9, 'Debuff', 'Silence!', 1),
-  Card('Card_0148_bake.png', 9, 'Buff', 'Reroll', 1),
-  Card('Card_0149_bake.png', 9, 'Helper', 'Dice Bomb', 1),
+  Card('Card_0147_bake.png', 9, 'Debuff', 'Silence!', 2),
+  Card('Card_0148_bake.png', 9, 'Buff', 'Reroll', 3),
+  Card('Card_0149_bake.png', 9, 'Helper', 'Dice Bomb', 0),
   Card('Card_1017_bake.png', 9, 'Personality', 'Roleplay', 1),
 ].sort(defaultCardSort);
 
