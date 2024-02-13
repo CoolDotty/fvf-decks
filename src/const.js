@@ -1,5 +1,10 @@
 // FvF cards and first sorted by patch, then by ID
-export const defaultCardSort = (a, b) => (a.batch === b.batch ? a.id - b.id : a.batch - b.batch);
+export const defaultCardSort = (a, b) => {
+  // Present always shows at the very beginning
+  if (a.name === 'Present') return -1;
+  if (b.name === 'Present') return 1;
+  return (a.batch === b.batch ? a.id - b.id : a.batch - b.batch);
+};
 
 // Batch:
 // 0 = Launch
