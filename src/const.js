@@ -44,7 +44,7 @@ export const allCards = [
   Card('Card_0020_bake.png', 0, 'Weapon', 'Brass Hopper', 1),
   Card('Card_0030_bake.png', 0, 'Buff', 'Energy Drink', 1),
   Card('Card_0041_bake.png', 0, 'Helper', 'Wall', 1),
-  Card('Card_0056_bake.png', 3, 'Buff', 'Card Thief', 3),
+  Card('Card_0056_bake.png', 3, 'Buff', 'Card Thief', 4),
   Card('Card_0067_bake.png', 0, 'Weapon', 'Punch-R', 3),
   Card('Card_0083_bake.png', 3, 'Wild', 'Hot Potato', 2),
   Card('Card_0098_bake.png', 2, 'Buff', 'Thick Skin', 1),
