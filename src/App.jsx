@@ -356,7 +356,7 @@ export default function App() {
         <div>
           FvF-Decks is an
           {' '}
-          <a href="https://github.com/KarlTheCool/fvf-decks">open-source project</a>
+          <a href="https://github.com/CoolDotty/fvf-decks">open-source project</a>
           {' '}
           maintained with 💔 by all its contributors
         </div>
