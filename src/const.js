@@ -17,6 +17,7 @@ export const defaultCardSort = (a, b) => {
 // 7 = Sable Santana BFF
 // 8 = Xmas Update (2023)
 // 9 = Nerdvana
+// 10 = Art Gallary Update
 
 const Card = (img, batch, type, name, cost) => ({
   id: parseInt(img.substring(5, 9), 10),
@@ -134,6 +135,7 @@ export const allCards = [
   Card('Card_0148_bake.png', 9, 'Buff', 'Reroll', 3),
   Card('Card_0149_bake.png', 9, 'Helper', 'Dice Bomb', 0),
   Card('Card_1017_bake.png', 9, 'Personality', 'Roleplay', 1),
+  Card('Card_1019_bake.png', 10, 'Personality', 'Arpeggio', 1),
 ].sort(defaultCardSort);
 
 export const cards = allCards.filter(({ type }) => type !== 'Personality');
@@ -153,4 +155,5 @@ export const personalityToId = (p) => ({
   'Reading Glasses': 'crocodile',
   Badass: 'doberman',
   Roleplay: 'toad',
+  Arpeggio: 'cow',
 })[p];
