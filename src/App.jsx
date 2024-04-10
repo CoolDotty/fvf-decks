@@ -9,6 +9,7 @@ import DropDown from './DropDown';
 import Button from './Button';
 import TextInput from './TextInput';
 import Modal from './Modal';
+import NotFound from './NotFound';
 
 // Compressed decks strings seem to be longer than uncompressed ones
 // import { compressUrlSafe, decompressUrlSafe } from 'urlsafe-lzma';
@@ -108,6 +109,7 @@ export default function App() {
     .filter((c) => (cardSearch.length > 0
       ? c.name.toLowerCase().includes(cardSearch.toLowerCase())
       : true))
+    .filter((c) => (c.id === 1999 ? (cardSearch.toLowerCase() === atob('c2lhcm8=')) : true))
     .sort(cardSorters[cardSort]);
 
   return (
@@ -331,13 +333,7 @@ export default function App() {
             />
           ))
         ) : (
-          <div className="error">
-            No results for &ldquo;
-            {cardSearch}
-            &rdquo;
-            <br />
-            💔
-          </div>
+          <NotFound cardSearch={cardSearch} />
         )}
       </div>
       <footer>

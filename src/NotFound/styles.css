@@ -1,0 +1,8 @@
+.content > .error {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  min-height: 30rem;
+  opacity: 0.5;
+  text-align: center;
+}

@@ -18,6 +18,7 @@ export const defaultCardSort = (a, b) => {
 // 8 = Xmas Update (2023)
 // 9 = Nerdvana
 // 10 = Art Gallary Update
+// 11 = The Siaro Update
 
 const Card = (img, batch, type, name, cost) => ({
   id: parseInt(img.substring(5, 9), 10),
@@ -68,7 +69,7 @@ export const allCards = [
   Card('Card_0032_bake.png', 4, 'Weapon', 'Akimbo', 3),
   Card('Card_0044_bake.png', 0, 'Debuff', 'Garbage Day', 1),
   Card('Card_0058_bake.png', 0, 'Helper', 'Bear Trap', 1),
-  Card('Card_0069_bake.png', 0, 'Weapon', 'Katana', 3),
+  Card('Card_0069_bake.png', 0, 'Weapon', 'Katana', 2),
   Card('Card_0086_bake.png', 5, 'Debuff', 'Frozen Gun', 2),
   Card('Card_0100_bake.png', 0, 'Trap', 'Ninja Log', 2),
   Card('Card_0128_bake.png', 5, 'Wild', 'Warp Room', 2),
@@ -96,7 +97,7 @@ export const allCards = [
   Card('Card_1001_bake.png', 0, 'Personality', "It's Medicinal", 2),
   Card('Card_1013_bake.png', 0, 'Personality', 'Big Bullets', 2),
   Card('Card_0007_bake.png', 0, 'Buff', 'Double Jump', 1),
-  Card('Card_0016_bake.png', 0, 'Buff', 'Big Mag', 2),
+  Card('Card_0016_bake.png', 0, 'Buff', 'Big Mag', 1),
   Card('Card_0025_bake.png', 0, 'Weapon', 'FK-82', 3),
   Card('Card_0035_bake.png', 4, 'Debuff', 'Disarm', 2),
   Card('Card_0048_bake.png', 0, 'Helper', 'Smoke Bomb', 1),
@@ -136,11 +137,17 @@ export const allCards = [
   Card('Card_0149_bake.png', 9, 'Helper', 'Dice Bomb', 0),
   Card('Card_1017_bake.png', 9, 'Personality', 'Roleplay', 1),
   Card('Card_1019_bake.png', 10, 'Personality', 'Arpeggio', 1),
+  Card('Card_0155_bake.png', 11, 'Wild', 'Floor is Lava', 2),
+  Card('Card_0157_bake.png', 11, 'Buff', 'Venom Eater', 1),
+  Card('Card_0164_bake.png', 11, 'Buff', 'Brain Mirror', 2),
+  Card('Card_1999_bake.png', 11, 'Personality', atob('c2lhcm8='), 1),
+  Card('Card_0165_bake.png', 11, 'Buff', 'Sly Shooter', 3),
+  Card('Card_1021_bake.png', 11, 'Personality', 'Undercover Agent', 1),
 ].sort(defaultCardSort);
 
 export const cards = allCards.filter(({ type }) => type !== 'Personality');
 
-export const personalities = allCards.filter(({ type }) => type === 'Personality');
+export const personalities = allCards.filter(({ id, type }) => type === 'Personality' && id !== 1999);
 
 export const personalityToId = (p) => ({
   Classic: 'seagull',
@@ -156,4 +163,6 @@ export const personalityToId = (p) => ({
   Badass: 'doberman',
   Roleplay: 'toad',
   Arpeggio: 'cow',
+  [atob('c2lhcm8=')]: 'snake',
+  'Undercover Agent': 'wolf',
 })[p];
