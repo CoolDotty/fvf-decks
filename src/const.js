@@ -9,6 +9,7 @@ export const defaultCardSort = (a, b) => {
 // Batch:
 // 0 = Launch
 // 1 = Pixel Vision
+// 1.1 = Secret 404 card drop (SHOULD BE 12 BUT IS SORTED AS HERE)
 // 2 = Little Lars Content Update
 // 3 = Myk Raver BFF
 // 4 = Baba's Laundromat
@@ -143,6 +144,7 @@ export const allCards = [
   Card('Card_1999_bake.png', 11, 'Personality', atob('c2lhcm8='), 1),
   Card('Card_0165_bake.png', 11, 'Buff', 'Sly Shooter', 3),
   Card('Card_1021_bake.png', 11, 'Personality', 'Undercover Agent', 1),
+  Card('Card_0166_bake.png', 1.1, 'Buff', '404', 0),
 ].sort(defaultCardSort);
 
 export const cards = allCards.filter(({ type }) => type !== 'Personality');
