@@ -141,7 +141,6 @@ export const allCards = [
   Card('Card_0155_bake.png', 11, 'Wild', 'Floor is Lava', 2),
   Card('Card_0157_bake.png', 11, 'Buff', 'Venom Eater', 1),
   Card('Card_0164_bake.png', 11, 'Buff', 'Brain Mirror', 2),
-  Card('Card_1999_bake.png', 11, 'Personality', atob('c2lhcm8='), 1),
   Card('Card_0165_bake.png', 11, 'Buff', 'Sly Shooter', 3),
   Card('Card_1021_bake.png', 11, 'Personality', 'Undercover Agent', 1),
   Card('Card_0166_bake.png', 1.1, 'Buff', '404', 0),
@@ -165,6 +164,5 @@ export const personalityToId = (p) => ({
   Badass: 'doberman',
   Roleplay: 'toad',
   Arpeggio: 'cow',
-  [atob('c2lhcm8=')]: 'snake',
   'Undercover Agent': 'wolf',
 })[p];

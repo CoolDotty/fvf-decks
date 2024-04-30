@@ -109,7 +109,6 @@ export default function App() {
     .filter((c) => (cardSearch.length > 0
       ? c.name.toLowerCase().includes(cardSearch.toLowerCase())
       : true))
-    .filter((c) => (c.id === 1999 ? (cardSearch.toLowerCase() === atob('c2lhcm8=')) : true))
     .sort(cardSorters[cardSort]);
 
   return (
