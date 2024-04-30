@@ -19,7 +19,8 @@ export const defaultCardSort = (a, b) => {
 // 8 = Xmas Update (2023)
 // 9 = Nerdvana
 // 10 = Art Gallary Update
-// 11 = The Siaro Update
+// 11 = The "Siaro" Update
+// 12 = 90's Drugstore Crime Update
 
 const Card = (img, batch, type, name, cost) => ({
   id: parseInt(img.substring(5, 9), 10),
@@ -144,6 +145,10 @@ export const allCards = [
   Card('Card_0165_bake.png', 11, 'Buff', 'Sly Shooter', 3),
   Card('Card_1021_bake.png', 11, 'Personality', 'Undercover Agent', 1),
   Card('Card_0166_bake.png', 1.1, 'Buff', '404', 0),
+  Card('Card_1022_bake.png', 12, 'Personality', 'Left Behind', 2),
+  Card('Card_1023_bake.png', 12, 'Personality', 'At The End Of The Road', 2),
+  Card('Card_1024_bake.png', 12, 'Personality', 'Venom Eater', 2),
+  Card('Card_1025_bake.png', 12, 'Personality', 'Fluffy Wool', 2),
 ].sort(defaultCardSort);
 
 export const cards = allCards.filter(({ type }) => type !== 'Personality');
@@ -165,4 +170,29 @@ export const personalityToId = (p) => ({
   Roleplay: 'toad',
   Arpeggio: 'cow',
   'Undercover Agent': 'wolf',
+  'Left Behind': 'dingo',
+  'At The End Of The Road': 'dingo_laika',
+  'Venom Eater': 'dingo_siaro',
+  'Fluffy Wool': 'dingo_jawhara',
+})[p];
+
+export const personalityToRender = (p) => ({
+  Classic: 'characters/character_full_seagull_default.png',
+  'Thick Coat': 'characters/character_full_polarbear_default.png',
+  'Power Legs': 'characters/character_full_moose_default.png',
+  Runner: 'characters/character_full_hare_default.png',
+  'Katana Lover': 'characters/character_full_tiger_default.png',
+  "It's Medicinal": 'characters/character_full_duck_default.png',
+  'Big Bullets': 'characters/character_full_cat_default.png',
+  Brasslover: 'characters/character_full_woodpecker_default.png',
+  'Dither & Banding': 'characters/character_full_rat_default.png',
+  'Reading Glasses': 'characters/character_full_crocodile_default.png',
+  Badass: 'characters/character_full_doberman_default.png',
+  Roleplay: 'characters/character_full_toad_default.png',
+  Arpeggio: 'characters/character_full_cow_default.png',
+  'Undercover Agent': 'characters/character_full_wolf_default.png',
+  'Left Behind': 'characters/character_full_dingo_default.png',
+  'At The End Of The Road': 'characters/character_full_dingo_laika.png',
+  'Venom Eater': 'characters/character_full_dingo_siaro.png',
+  'Fluffy Wool': 'characters/character_full_dingo_jawhara.png',
 })[p];

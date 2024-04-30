@@ -14,7 +14,7 @@ import NotFound from './NotFound';
 // Compressed decks strings seem to be longer than uncompressed ones
 // import { compressUrlSafe, decompressUrlSafe } from 'urlsafe-lzma';
 
-import { allCards, personalityToId, defaultCardSort } from './const';
+import { allCards, personalityToRender, defaultCardSort } from './const';
 
 const MAX_COST = 50;
 const MIN_CARDS = 25;
@@ -250,9 +250,7 @@ export default function App() {
               style={{
                 zIndex: (i + 1) * -1,
                 // opacity: (myCharacters.length - i) * (0.75 / myCharacters.length),
-                backgroundImage: `url("characters/character_full_${personalityToId(
-                  c.name,
-                )}_default.png")`,
+                backgroundImage: `url("${personalityToRender(c.name)}")`,
                 backgroundSize: 'contain',
                 backgroundPosition: 'center right',
                 transform: `
