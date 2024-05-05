@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "https://friendsvsfriends.help/static/css/main.4cb841b3.css",
-    "main.js": "https://friendsvsfriends.help/static/js/main.349e341e.js",
+    "main.css": "https://friendsvsfriends.help/static/css/main.bb14d944.css",
+    "main.js": "https://friendsvsfriends.help/static/js/main.b4dc2911.js",
     "static/media/kenyan_coffee_rg.otf": "https://friendsvsfriends.help/static/media/kenyan_coffee_rg.f422e407e44f177b62ab.otf",
     "static/media/Friendly_Fire.ttf": "https://friendsvsfriends.help/static/media/Friendly_Fire.104d550b2ca14e67fcd5.ttf",
     "index.html": "https://friendsvsfriends.help/index.html",
-    "main.4cb841b3.css.map": "https://friendsvsfriends.help/static/css/main.4cb841b3.css.map",
-    "main.349e341e.js.map": "https://friendsvsfriends.help/static/js/main.349e341e.js.map"
+    "main.bb14d944.css.map": "https://friendsvsfriends.help/static/css/main.bb14d944.css.map",
+    "main.b4dc2911.js.map": "https://friendsvsfriends.help/static/js/main.b4dc2911.js.map"
   },
   "entrypoints": [
-    "static/css/main.4cb841b3.css",
-    "static/js/main.349e341e.js"
+    "static/css/main.bb14d944.css",
+    "static/js/main.b4dc2911.js"
   ]
 }
