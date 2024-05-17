@@ -191,12 +191,6 @@ export default function App() {
               onClick={tryToCopy}
             />
           </div>
-          <div className="DeckCheckCTA">
-            Want to know how good your build is? Try
-            {' '}
-            <a href="https://deckcheck.friendsvsfriends.help">deckcheck</a>
-            !
-          </div>
         </div>
       </div>
       <div className={`myDeck ${deckIsEmpty ? 'hello' : ''}`}>
