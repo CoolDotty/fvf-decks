@@ -1,6 +1,8 @@
 import './reset.css';
 import './App.css';
-import React, { useState, useEffect, useRef } from 'react';
+import React, {
+  useState, useEffect, useRef, useCallback,
+} from 'react';
 import { useSearchParams } from 'react-router-dom';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import Card from './Card';
@@ -41,12 +43,24 @@ const cardSorters = {
 
 export default function App() {
   const [searchParams, setSearchParams] = useSearchParams();
-  const [myDeck, setMyDeck] = useState(
-    (searchParams.get('deck') || '')
-      .split('.')
-      .map((s) => allCards.find((c) => c.id === parseInt(s, 10)))
-      .filter(Boolean),
-  );
+  const deckParamString = searchParams.get('deck');
+  const deckParamCards = (deckParamString || '')
+    .split('.')
+    .map((s) => allCards.find((c) => c.id === parseInt(s, 10)))
+    .filter(Boolean);
+
+  const [myDeck, _setMyDeck] = useState(deckParamCards);
+  const deckStateString = myDeck.map((c) => c.id).join('.') || null;
+  // Update the useState and also the url
+  const setMyDeck = useCallback((d) => {
+    _setMyDeck(d);
+    if (d.length > 0) {
+      setSearchParams({ deck: d.map((c) => c.id).join('.') || null });
+    } else {
+      setSearchParams({});
+    }
+  }, [_setMyDeck, setSearchParams]);
+
   const myCards = myDeck.filter((c) => c.type !== 'Personality');
   const myCharacters = myDeck.filter((c) => c.type === 'Personality');
 
@@ -56,15 +70,23 @@ export default function App() {
   const isItchBuild = process.env.PUBLIC_URL === '.';
   /* eslint-enable no-unused-vars */
 
+  // If the url doesn't match the deck, defer to the url state.
+  // (Undo / redo deck when browser push / pop happens)
   useEffect(() => {
-    if (myDeck.length > 0) {
-      setSearchParams({
-        deck: myDeck.map((c) => c.id).join('.'),
-      });
-    } else {
-      setSearchParams({});
+    if (deckParamString !== deckStateString) {
+      _setMyDeck(deckParamCards);
     }
-  }, [myDeck, setSearchParams]);
+    // Also do some hackery to update the url
+    // to filter out broken card ids.
+    const deckHasInvalidCards = (deckParamString || '')
+      .split('.')
+      .find((s) => !allCards.find((c) => c.id === parseInt(s, 10)));
+    if (deckHasInvalidCards) {
+      // Not setSearchParam as this will push the state
+      // We want to replace the current one to preserve the stack.
+      setSearchParams({ deck: deckStateString }, { replace: true });
+    }
+  }, [deckParamString, deckStateString, deckParamCards, _setMyDeck, setSearchParams]);
 
   const [cardFilter, setCardFilter] = useState('All');
   const [cardSearch, setCardSearch] = useState('');
