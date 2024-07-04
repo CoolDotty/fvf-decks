@@ -21,6 +21,7 @@ export const defaultCardSort = (a, b) => {
 // 10 = Art Gallary Update
 // 11 = The "Siaro" Update
 // 12 = 90's Drugstore Crime Update
+// 13 = Very Expensive Update
 
 const Card = (img, batch, type, name, cost) => ({
   id: parseInt(img.substring(5, 9), 10),
@@ -149,6 +150,9 @@ export const allCards = [
   Card('Card_1023_bake.png', 12, 'Personality', 'At The End Of The Road', 2),
   Card('Card_1024_bake.png', 12, 'Personality', 'Venom Eater', 2),
   Card('Card_1025_bake.png', 12, 'Personality', 'Fluffy Wool', 2),
+  Card('Card_1026_bake.png', 12, 'Personality', 'Energy Boost', 2),
+  Card('Card_1027_bake.png', 12, 'Personality', 'Stuntman', 2),
+  Card('Card_1028_bake.png', 12, 'Personality', 'Determination', 2),
 ].sort(defaultCardSort);
 
 export const cards = allCards.filter(({ type }) => type !== 'Personality');
@@ -174,6 +178,9 @@ export const personalityToId = (p) => ({
   'At The End Of The Road': 'dingo_laika',
   'Venom Eater': 'dingo_siaro',
   'Fluffy Wool': 'dingo_jawhara',
+  'Energy Boost': 'dingo_fennecfox',
+  Stuntman: 'dingo_turtle',
+  Determination: 'dingo_llama',
 })[p];
 
 export const personalityToRender = (p) => ({
@@ -195,4 +202,7 @@ export const personalityToRender = (p) => ({
   'At The End Of The Road': 'characters/character_full_dingo_laika.png',
   'Venom Eater': 'characters/character_full_dingo_siaro.png',
   'Fluffy Wool': 'characters/character_full_dingo_jawhara.png',
+  'Energy Boost': 'characters/character_full_dingo_fennecfox.png',
+  Stuntman: 'characters/character_full_dingo_turtle.png',
+  Determination: 'characters/character_full_dingo_llama.png',
 })[p];
