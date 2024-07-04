@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "https://friendsvsfriends.help/static/css/main.eb9a43b9.css",
-    "main.js": "https://friendsvsfriends.help/static/js/main.c53faade.js",
+    "main.js": "https://friendsvsfriends.help/static/js/main.b16a7f77.js",
     "static/media/kenyan_coffee_rg.otf": "https://friendsvsfriends.help/static/media/kenyan_coffee_rg.f422e407e44f177b62ab.otf",
     "static/media/Friendly_Fire.ttf": "https://friendsvsfriends.help/static/media/Friendly_Fire.104d550b2ca14e67fcd5.ttf",
     "index.html": "https://friendsvsfriends.help/index.html",
     "main.eb9a43b9.css.map": "https://friendsvsfriends.help/static/css/main.eb9a43b9.css.map",
-    "main.c53faade.js.map": "https://friendsvsfriends.help/static/js/main.c53faade.js.map"
+    "main.b16a7f77.js.map": "https://friendsvsfriends.help/static/js/main.b16a7f77.js.map"
   },
   "entrypoints": [
     "static/css/main.eb9a43b9.css",
-    "static/js/main.c53faade.js"
+    "static/js/main.b16a7f77.js"
   ]
 }
