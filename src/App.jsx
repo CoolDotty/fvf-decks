@@ -3,6 +3,7 @@ import './App.css';
 import React, {
   useState, useEffect, useRef, useCallback,
 } from 'react';
+import { createRoot } from 'react-dom/client';
 import { useSearchParams } from 'react-router-dom';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import Card from './Card';
@@ -94,8 +95,91 @@ export default function App() {
   const [shareMenuOpen, setShareMenuOpen] = useState(false);
   const [successfulCopies, setSuccessfulCopies] = useState([]);
   const [isResetModalOpen, setIsResetModalOpen] = useState(false);
+  const [isLoadMenuOpen, setIsLoadMenuOpen] = useState(false);
 
   const copyPasteRef = useRef();
+  const inputRef = useRef();
+  const decksRef = useRef();
+
+  /* https://stackoverflow.com/questions/67399620/how-to-make-open-url-on-click-on-button-in-reactjs */
+  const openInNewTab = (url) => {
+    const newWindow = window.open(url, '_blank', 'noopener,noreferrer');
+    if (newWindow) newWindow.opener = null;
+  };
+
+  /* Copied and pasted from a medium article. */
+  function handleFileUpload(e) {
+    const { files } = e.target;
+    if (!files) return;
+
+    const file = files[0];
+    const reader = new FileReader();
+    reader.onload = () => {
+      /* process the player.log file */
+      /*
+      The python script, for reference:
+      for line in open(log_location).readlines():
+        if line.startswith('===> {"code":0,"user"'):
+            found_user_string = line
+            break
+
+      found_user_string = found_user_string[4:].strip()
+      playerlog = json.loads(found_user_string)["user"]
+      card_inventory = playerlog["cards"]
+
+      for deck in playerlog["decks"]:
+          card_ids = []
+          print(f"Deck #{deck['index'] + 1}: {deck['name']}")
+          for card in deck["cards"]:
+              for base_card in card_inventory:
+                  if base_card["_id"] == card:
+                      card_ids.append(str(base_card["cardid"]))
+
+        print("https://friendsvsfriends.help/?deck=" + ".".join(card_ids) + "\n")
+      */
+      const fileContentArray = reader.result.split('\n');
+      let userString;
+      for (let i = 0; i < fileContentArray.length; i += 1) {
+        const line = fileContentArray[i];
+        if (line.trim().startsWith('===> {"code":0,"user"')) {
+          userString = line;
+          break;
+        }
+      }
+      const userData = JSON.parse(userString.slice(4).trim()).user;
+      const inventory = userData.cards;
+      const divRoot = document.getElementById('decksHolder');
+      const root = createRoot(divRoot);
+      const DECKS = [];
+      userData.decks.forEach((deck) => {
+        const cardIds = [];
+        deck.cards.forEach((card) => {
+          inventory.forEach((invCard) => {
+            // eslint-disable-next-line no-underscore-dangle
+            if (invCard._id === card) {
+              cardIds.push(invCard.cardid);
+            }
+          });
+        });
+        const madeurl = `/?deck=${cardIds.join('.')}`;
+        DECKS.push({ name: deck.name, url: madeurl });
+      });
+      root.render(
+        <div>
+          {DECKS.map((deck) => (
+            <Button label={deck.name} style={{ margin: '8px' }} onClick={() => openInNewTab(deck.url)} />))}
+        </div>,
+      );
+    };
+    reader.readAsText(file);
+  }
+
+  function handleButtonClick(e) {
+    e.preventDefault();
+    if (!inputRef || !inputRef.current) return;
+
+    inputRef.current.click();
+  }
 
   const shareableUrl = `friendsvsfriends.help/${window.location.search}`;
   const tryToCopy = async (e) => {
@@ -188,9 +272,19 @@ export default function App() {
               }}
             />
             <Button
-              onClick={() => setShareMenuOpen(!shareMenuOpen)}
+              onClick={() => {
+                setShareMenuOpen(!shareMenuOpen);
+                setIsLoadMenuOpen(false);
+              }}
               label="Share"
               forceActive={shareMenuOpen}
+            />
+            <Button
+              onClick={() => {
+                setIsLoadMenuOpen(!isLoadMenuOpen);
+                setShareMenuOpen(false);
+              }}
+              label="Load"
             />
           </div>
         </div>
@@ -212,6 +306,24 @@ export default function App() {
               readOnly
               onClick={tryToCopy}
             />
+          </div>
+        </div>
+        <div
+          className="ShareMenu"
+          aria-hidden={!isLoadMenuOpen}
+          style={{
+            transform: `translate(0%, 100%) scale(1.0, ${isLoadMenuOpen ? 1.0 : 0.0})`,
+          }}
+        >
+          <div className="ShareContainer">
+            {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
+            <Button
+              onClick={(e) => handleButtonClick(e)}
+              label="Upload Player.log"
+            />
+            <input ref={inputRef} type="file" id="fileInput" hidden onChange={(e) => handleFileUpload(e)} />
+            <br />
+            <div ref={decksRef} id="decksHolder" />
           </div>
         </div>
       </div>
