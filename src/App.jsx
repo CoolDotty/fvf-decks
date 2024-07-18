@@ -99,7 +99,6 @@ export default function App() {
 
   const copyPasteRef = useRef();
   const inputRef = useRef();
-  // const decksRef = useRef();
 
   /* https://stackoverflow.com/questions/67399620/how-to-make-open-url-on-click-on-button-in-reactjs */
   const openInNewTab = (url) => {
@@ -107,7 +106,7 @@ export default function App() {
     if (newWindow) newWindow.opener = null;
   };
 
-  /* Copied and pasted from a medium article. */
+  /* https://medium.com/@ctrlaltmonique/how-to-create-a-custom-file-upload-button-in-react-with-typescript-b08150f1532e */
   function handleFileUpload(e) {
     const { files } = e.target;
     if (!files) return;
