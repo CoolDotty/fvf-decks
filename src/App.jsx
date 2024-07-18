@@ -309,20 +309,19 @@ export default function App() {
           </div>
         </div>
         <div
-          className="ShareMenu"
+          className="LoadMenu"
           aria-hidden={!isLoadMenuOpen}
           style={{
             transform: `translate(0%, 100%) scale(1.0, ${isLoadMenuOpen ? 1.0 : 0.0})`,
           }}
         >
-          <div className="ShareContainer">
+          <div className="LoadContainer">
             {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
             <Button
               onClick={(e) => handleButtonClick(e)}
               label="Upload Player.log"
             />
             <input ref={inputRef} type="file" id="fileInput" hidden onChange={(e) => handleFileUpload(e)} />
-            <br />
             <div ref={decksRef} id="decksHolder" />
           </div>
         </div>

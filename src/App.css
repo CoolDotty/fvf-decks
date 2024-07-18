@@ -180,9 +180,36 @@ a:active {
   transition: transform 0.1s;
 }
 
+.LoadMenu {
+  position: absolute;
+  bottom: 0;
+  right: 0.5rem; /* Same as .topMenu border radius */
+  z-index: -1;
+
+  width: calc(100% - 1rem);
+  padding: 1rem;
+
+  background-color: rgb(42, 21, 82);
+  border: solid white 0.25rem;
+  border-top: rgb(42, 21, 82);
+  outline: solid black 0.25rem;
+  border-bottom-left-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+
+  font-size: 0.7em;
+
+  transform-origin: top;
+  transition: transform 0.1s;
+}
+
 .ShareContainer {
   display: flex;
   align-items: center;
+}
+
+.LoadContainer {
+  display: flex;
+  justify-content: space-between;
 }
 
 .ShareContainer > label {
