@@ -143,10 +143,13 @@ export default function App() {
         DECKS.push({ name: deck.name, url: madeurl });
       });
       root.render(
-        <div>
-          {DECKS.map((deck) => (
-            <Button label={deck.name} style={{ margin: '8px' }} onClick={() => openInNewTab(deck.url)} />))}
-        </div>,
+        DECKS.map((deck) => (
+          <Button
+            label={deck.name}
+            style={{ margin: '8px' }}
+            onClick={() => openInNewTab(deck.url)}
+          />
+        )),
       );
     };
     reader.readAsText(file);
