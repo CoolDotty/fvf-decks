@@ -212,6 +212,11 @@ a:active {
   justify-content: space-between;
 }
 
+#decksHolder {
+  display: flex;
+  gap: 1rem;
+}
+
 .ShareContainer > label {
   flex: 0 0 auto;
 }

@@ -99,7 +99,7 @@ export default function App() {
 
   const copyPasteRef = useRef();
   const inputRef = useRef();
-  const decksRef = useRef();
+  // const decksRef = useRef();
 
   /* https://stackoverflow.com/questions/67399620/how-to-make-open-url-on-click-on-button-in-reactjs */
   const openInNewTab = (url) => {
@@ -322,7 +322,7 @@ export default function App() {
               label="Upload Player.log"
             />
             <input ref={inputRef} type="file" id="fileInput" hidden onChange={(e) => handleFileUpload(e)} />
-            <div ref={decksRef} id="decksHolder" />
+            <div id="decksHolder" />
           </div>
         </div>
       </div>
