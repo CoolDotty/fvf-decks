@@ -116,27 +116,6 @@ export default function App() {
     const reader = new FileReader();
     reader.onload = () => {
       /* process the player.log file */
-      /*
-      The python script, for reference:
-      for line in open(log_location).readlines():
-        if line.startswith('===> {"code":0,"user"'):
-            found_user_string = line
-            break
-
-      found_user_string = found_user_string[4:].strip()
-      playerlog = json.loads(found_user_string)["user"]
-      card_inventory = playerlog["cards"]
-
-      for deck in playerlog["decks"]:
-          card_ids = []
-          print(f"Deck #{deck['index'] + 1}: {deck['name']}")
-          for card in deck["cards"]:
-              for base_card in card_inventory:
-                  if base_card["_id"] == card:
-                      card_ids.append(str(base_card["cardid"]))
-
-        print("https://friendsvsfriends.help/?deck=" + ".".join(card_ids) + "\n")
-      */
       const fileContentArray = reader.result.split('\n');
       let userString;
       for (let i = 0; i < fileContentArray.length; i += 1) {
