@@ -305,6 +305,14 @@ export default function App() {
             <input ref={inputRef} type="file" id="fileInput" hidden onChange={(e) => handleFileUpload(e)} />
             <div id="decksHolder" />
           </div>
+          {/* eslint-disable-next-line react/style-prop-object */}
+          <div style={{ marginTop: '0.5rem' }}>
+            <span>
+              Located in: /Users/
+              <span style={{ fontStyle: 'italic', opacity: 0.5 }}>your name</span>
+              /AppData/LocalLow/Brainwash Gang/Friends vs Friends/player.log
+            </span>
+          </div>
         </div>
       </div>
       <div className={`myDeck ${deckIsEmpty ? 'hello' : ''}`}>

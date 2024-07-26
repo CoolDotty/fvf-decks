@@ -210,10 +210,13 @@ a:active {
 .LoadContainer {
   display: flex;
   justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
 }
 
 #decksHolder {
   display: flex;
+  flex-wrap: wrap;
   gap: 1rem;
 }
 
