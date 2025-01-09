@@ -10,8 +10,7 @@ export default function Button(props) {
       type="button"
       className={`Button ${forceActive ? 'forceActive' : ''}`}
       onClick={onClick}
-      aria-label={label}
-    >
+      aria-label={label}>
       <div>{label}</div>
     </button>
   );

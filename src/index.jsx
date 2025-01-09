@@ -24,5 +24,5 @@ root.render(
         />
       </Routes>
     </Router>
-  </React.StrictMode>,
+  </React.StrictMode>
 );

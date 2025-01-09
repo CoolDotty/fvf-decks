@@ -15,8 +15,7 @@ export default function Radio(props) {
           style={{
             display: 'grid',
             placeItems: 'center',
-          }}
-        >
+          }}>
           <input
             id={o.value}
             style={{ display: 'none' }}
@@ -26,7 +25,11 @@ export default function Radio(props) {
             onChange={() => onChange(o.value)}
           />
           {o.icon ? (
-            <img src={`./icons/${o.icon}`} alt={o.label} style={{ width: '1em', height: '1em' }} />
+            <img
+              src={`./icons/${o.icon}`}
+              alt={o.label}
+              style={{ width: '1em', height: '1em' }}
+            />
           ) : (
             <div>{o.label}</div>
           )}

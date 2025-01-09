@@ -30,9 +30,7 @@ const useHover = (ref) => {
 
 export default function Card(props) {
   const { card, equipped, ...rest } = props;
-  const {
-    name, img, cost, type,
-  } = card;
+  const { name, img, cost, type } = card;
 
   const containerRef = useRef();
   const contentRef = useRef();
@@ -81,8 +79,7 @@ export default function Card(props) {
       <div className={`card ${equipped ? 'equipped' : ''}`} title={name} ref={contentRef}>
         <div
           className={`cardContent cost${cost}`}
-          style={{ backgroundImage: `url("cards/${img}")` }}
-        >
+          style={{ backgroundImage: `url("cards/${img}")` }}>
           <div
             className="cost"
             style={{

@@ -1,11 +1,8 @@
 import './reset.css';
 import './App.css';
-import React, {
-  useState, useEffect, useRef, useCallback,
-} from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { createRoot } from 'react-dom/client';
 import { useSearchParams } from 'react-router-dom';
-// eslint-disable-next-line import/no-extraneous-dependencies
 import Card from './Card';
 import Radio from './Radio';
 import DropDown from './DropDown';
@@ -36,9 +33,10 @@ const cardTypeValue = {
 const cardSorters = {
   id: defaultCardSort,
   cost: (a, b) => a.cost - b.cost,
-  type: (a, b) => (a.type === b.type
-    ? defaultCardSort(a, b)
-    : cardTypeValue[a.type] - cardTypeValue[b.type]),
+  type: (a, b) =>
+    a.type === b.type
+      ? defaultCardSort(a, b)
+      : cardTypeValue[a.type] - cardTypeValue[b.type],
   // Rarity
 };
 
@@ -53,23 +51,26 @@ export default function App() {
   const [myDeck, _setMyDeck] = useState(deckParamCards);
   const deckStateString = myDeck.map((c) => c.id).join('.') || null;
   // Update the useState and also the url
-  const setMyDeck = useCallback((d) => {
-    _setMyDeck(d);
-    if (d.length > 0) {
-      setSearchParams({ deck: d.map((c) => c.id).join('.') || null });
-    } else {
-      setSearchParams({});
-    }
-  }, [_setMyDeck, setSearchParams]);
+  const setMyDeck = useCallback(
+    (d) => {
+      _setMyDeck(d);
+      if (d.length > 0) {
+        setSearchParams({ deck: d.map((c) => c.id).join('.') || null });
+      } else {
+        setSearchParams({});
+      }
+    },
+    [_setMyDeck, setSearchParams]
+  );
 
   const myCards = myDeck.filter((c) => c.type !== 'Personality');
   const myCharacters = myDeck.filter((c) => c.type === 'Personality');
 
-  /* eslint-disable no-unused-vars */
+  /* eslint-disable no-unused-vars, no-undef */
   const isTestBuild = process.env.PUBLIC_URL === '';
   const isFvFHelpBuild = process.env.PUBLIC_URL === 'https://friendsvsfriends.help';
   const isItchBuild = process.env.PUBLIC_URL === '.';
-  /* eslint-enable no-unused-vars */
+  /* eslint-enable no-unused-vars, no-undef */
 
   // If the url doesn't match the deck, defer to the url state.
   // (Undo / redo deck when browser push / pop happens)
@@ -145,11 +146,12 @@ export default function App() {
       root.render(
         DECKS.map((deck) => (
           <Button
+            key={deck.name}
             label={deck.name}
             style={{ margin: '8px' }}
             onClick={() => openInNewTab(deck.url)}
           />
-        )),
+        ))
       );
     };
     reader.readAsText(file);
@@ -192,10 +194,14 @@ export default function App() {
   const deckIsEmpty = myDeck.length <= 0;
 
   const filteredAndSortedContentCard = allCards
-    .filter((c) => (cardFilter !== 'All' ? c.type === cardFilter : c.type !== 'Personality'))
-    .filter((c) => (cardSearch.length > 0
-      ? c.name.toLowerCase().includes(cardSearch.toLowerCase())
-      : true))
+    .filter((c) =>
+      cardFilter !== 'All' ? c.type === cardFilter : c.type !== 'Personality'
+    )
+    .filter((c) =>
+      cardSearch.length > 0
+        ? c.name.toLowerCase().includes(cardSearch.toLowerCase())
+        : true
+    )
     .sort(cardSorters[cardSort]);
 
   return (
@@ -217,26 +223,22 @@ export default function App() {
           </div>
           <div className="costMenu">
             <span>
-              Cost:
-              {' '}
+              Cost:{' '}
               {deckCost > MAX_COST ? (
                 <b style={{ color: 'red' }}>{deckCost}</b>
               ) : (
                 deckCost
               )}
-              /
-              {MAX_COST}
+              /{MAX_COST}
             </span>
             <span>
-              Count:
-              {' '}
+              Count:{' '}
               {deckCount < MIN_CARDS ? (
                 <b style={{ color: 'red' }}>{deckCount}</b>
               ) : (
                 deckCount
               )}
-              /
-              {MIN_CARDS}
+              /{MIN_CARDS}
             </span>
           </div>
           <div>
@@ -274,8 +276,7 @@ export default function App() {
           aria-hidden={!shareMenuOpen}
           style={{
             transform: `translate(0%, 100%) scale(1.0, ${shareMenuOpen ? 1.0 : 0.0})`,
-          }}
-        >
+          }}>
           <div className="ShareContainer">
             {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
             <label htmlFor="ShareCopyPastInput">Link:&nbsp;</label>
@@ -294,15 +295,17 @@ export default function App() {
           aria-hidden={!isLoadMenuOpen}
           style={{
             transform: `translate(0%, 100%) scale(1.0, ${isLoadMenuOpen ? 1.0 : 0.0})`,
-          }}
-        >
+          }}>
           <div className="LoadContainer">
             {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
-            <Button
-              onClick={(e) => handleButtonClick(e)}
-              label="Upload Player.log"
+            <Button onClick={(e) => handleButtonClick(e)} label="Upload Player.log" />
+            <input
+              ref={inputRef}
+              type="file"
+              id="fileInput"
+              hidden
+              onChange={(e) => handleFileUpload(e)}
             />
-            <input ref={inputRef} type="file" id="fileInput" hidden onChange={(e) => handleFileUpload(e)} />
             <div id="decksHolder" />
           </div>
           {/* eslint-disable-next-line react/style-prop-object */}
@@ -451,22 +454,14 @@ export default function App() {
       </div>
       <footer>
         <div>
-          <a href="https://friendsvsfriends.com">Friends vs Friends</a>
-          {' '}
-          is created by
-          {' '}
-          <a href="https://brainwashgang.com/">Brainwash Gang</a>
-          {' '}
-          and published by
-          {' '}
+          <a href="https://friendsvsfriends.com">Friends vs Friends</a> is created by{' '}
+          <a href="https://brainwashgang.com/">Brainwash Gang</a> and published by{' '}
           <a href="https://rawfury.com/">Raw Fury</a>
         </div>
         <br />
         <div>
-          FvF-Decks is an
-          {' '}
-          <a href="https://github.com/CoolDotty/fvf-decks">open-source project</a>
-          {' '}
+          FvF-Decks is an{' '}
+          <a href="https://github.com/CoolDotty/fvf-decks">open-source project</a>{' '}
           maintained with 💔 by all its contributors
         </div>
       </footer>
@@ -503,8 +498,7 @@ function CopiedPopup(props) {
         pointerEvents: 'none',
         opacity: 1.0,
         transition: `opacity ${COPIED_POPUP_TIMEOUT}ms, transform ${COPIED_POPUP_TIMEOUT}ms`,
-      }}
-    >
+      }}>
       Copied!
     </div>
   );
