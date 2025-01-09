@@ -21,6 +21,7 @@ module.exports = {
     'react/prop-types': 0,
     'react/jsx-props-no-spreading': 0,
     'prefer-arrow-callback': 0,
+    'react/jsx-no-bind': 0,
   },
   overrides: [
     {

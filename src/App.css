@@ -93,51 +93,6 @@ a:active {
   background-repeat: no-repeat;
 }
 
-.topMenuContainer {
-  position: sticky;
-  top: 1rem;
-  z-index: 10;
-  margin-top: 1rem;
-  margin-bottom: 2.5rem;
-}
-
-.topMenu {
-  display: flex;
-  gap: 1rem;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center;
-
-  padding: 0.5rem 1rem;
-  border: solid rgb(68, 51, 154) 0;
-  border-bottom: solid rgb(68, 51, 154) 0.1em;
-  outline: solid black 0.1em;
-  border-radius: 0.5rem;
-  background-color: rgb(84, 64, 187);
-}
-
-.topMenu > * {
-  flex-basis: 1px;
-  flex-grow: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.topMenu > *:first-child {
-  justify-content: start;
-}
-
-.topMenu > *:last-child {
-  justify-content: end;
-  gap: 1rem;
-}
-
-.topMenu > .costMenu {
-  display: flex;
-  gap: 1rem;
-}
-
 .title {
   display: flex;
   align-items: center;
