@@ -8,6 +8,7 @@ import DropDown from './DropDown';
 import TextInput from './TextInput';
 import NotFound from './NotFound';
 import TopBar from './TopBar';
+import Footer from './Footer';
 
 // Compressed decks strings seem to be longer than uncompressed ones
 // import { compressUrlSafe, decompressUrlSafe } from 'urlsafe-lzma';
@@ -295,19 +296,7 @@ export default function App() {
           <NotFound cardSearch={cardSearch} />
         )}
       </div>
-      <footer>
-        <div>
-          <a href="https://friendsvsfriends.com">Friends vs Friends</a> is created by{' '}
-          <a href="https://brainwashgang.com/">Brainwash Gang</a> and published by{' '}
-          <a href="https://rawfury.com/">Raw Fury</a>
-        </div>
-        <br />
-        <div>
-          FvF-Decks is an{' '}
-          <a href="https://github.com/CoolDotty/fvf-decks">open-source project</a>{' '}
-          maintained with 💔 by all its contributors
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }

@@ -214,28 +214,3 @@ a:active {
   margin: 0 1rem;
   min-height: 30rem;
 }
-
-footer {
-  opacity: 0.7;
-  margin-top: 20em;
-  margin-bottom: 3em;
-  color: white !important;
-  font-family: Kenyan Coffee;
-  font-size: 0.9rem;
-  text-align: right;
-  text-shadow:
-        /* Basic Outline */
-    -1px -1px 0 #000,
-    1px -1px 0 #000,
-    -1px 1px 0 #000,
-    1px 1px 0 #000,
-    0 -1px 0 #000,
-    1px 0 0 #000,
-    0 1px 0 #000,
-    -1px 0 0 #000;
-  letter-spacing: 0.15em;
-}
-
-footer a {
-  color: inherit !important;
-}
