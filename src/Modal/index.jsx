@@ -10,7 +10,11 @@ function Modal({ isOpen, onCancel, onConfirm }) {
         <Button onClick={onConfirm} label="Yes" />
         <Button onClick={onCancel} label="CANCEL" />
       </div>
-      <div className={`modalBackdrop ${isOpen ? 'open' : ''}`} onClick={onCancel} aria-hidden />
+      <div
+        className={`modalBackdrop ${isOpen ? 'open' : ''}`}
+        onClick={onCancel}
+        aria-hidden
+      />
     </>
   );
 }

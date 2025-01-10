@@ -1,0 +1,53 @@
+.topMenuContainer {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: rgb(84, 64, 187);
+  border: solid rgb(68, 51, 154) 0;
+  border-bottom: solid rgb(68, 51, 154) 0.1em;
+  outline: solid black 0.1em;
+  border-radius: 0.5rem;
+  margin: 1rem;
+  padding: 0.5rem;
+}
+
+.topMenu {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.costMenu {
+  display: flex;
+  gap: 1rem;
+}
+
+.ShareMenu,
+.LoadMenu {
+  margin-top: 0.5rem;
+  transform-origin: top;
+}
+
+.ShareContainer,
+.LoadContainer {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.ShareContainer > input {
+  flex: 1 1 auto;
+}
+
+.topMenu > div:nth-child(3) {
+  display: flex;
+  gap: 1rem;
+  justify-content: end;
+}

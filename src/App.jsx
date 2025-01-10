@@ -1,26 +1,19 @@
 import './reset.css';
 import './App.css';
-import React, {
-  useState, useEffect, useRef, useCallback,
-} from 'react';
-import { createRoot } from 'react-dom/client';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { useSearchParams } from 'react-router-dom';
-// eslint-disable-next-line import/no-extraneous-dependencies
 import Card from './Card';
 import Radio from './Radio';
 import DropDown from './DropDown';
-import Button from './Button';
 import TextInput from './TextInput';
-import Modal from './Modal';
 import NotFound from './NotFound';
+import TopBar from './TopBar';
+import Footer from './Footer';
 
 // Compressed decks strings seem to be longer than uncompressed ones
 // import { compressUrlSafe, decompressUrlSafe } from 'urlsafe-lzma';
 
 import { allCards, personalityToRender, defaultCardSort } from './const';
-
-const MAX_COST = 50;
-const MIN_CARDS = 25;
 
 // Big air quotes on this one. Just for sorting nicely
 const cardTypeValue = {
@@ -36,9 +29,10 @@ const cardTypeValue = {
 const cardSorters = {
   id: defaultCardSort,
   cost: (a, b) => a.cost - b.cost,
-  type: (a, b) => (a.type === b.type
-    ? defaultCardSort(a, b)
-    : cardTypeValue[a.type] - cardTypeValue[b.type]),
+  type: (a, b) =>
+    a.type === b.type
+      ? defaultCardSort(a, b)
+      : cardTypeValue[a.type] - cardTypeValue[b.type],
   // Rarity
 };
 
@@ -53,23 +47,26 @@ export default function App() {
   const [myDeck, _setMyDeck] = useState(deckParamCards);
   const deckStateString = myDeck.map((c) => c.id).join('.') || null;
   // Update the useState and also the url
-  const setMyDeck = useCallback((d) => {
-    _setMyDeck(d);
-    if (d.length > 0) {
-      setSearchParams({ deck: d.map((c) => c.id).join('.') || null });
-    } else {
-      setSearchParams({});
-    }
-  }, [_setMyDeck, setSearchParams]);
+  const setMyDeck = useCallback(
+    (d) => {
+      _setMyDeck(d);
+      if (d.length > 0) {
+        setSearchParams({ deck: d.map((c) => c.id).join('.') || null });
+      } else {
+        setSearchParams({});
+      }
+    },
+    [_setMyDeck, setSearchParams]
+  );
 
   const myCards = myDeck.filter((c) => c.type !== 'Personality');
   const myCharacters = myDeck.filter((c) => c.type === 'Personality');
 
-  /* eslint-disable no-unused-vars */
+  /* eslint-disable no-unused-vars, no-undef */
   const isTestBuild = process.env.PUBLIC_URL === '';
   const isFvFHelpBuild = process.env.PUBLIC_URL === 'https://friendsvsfriends.help';
   const isItchBuild = process.env.PUBLIC_URL === '.';
-  /* eslint-enable no-unused-vars */
+  /* eslint-enable no-unused-vars, no-undef */
 
   // If the url doesn't match the deck, defer to the url state.
   // (Undo / redo deck when browser push / pop happens)
@@ -99,68 +96,6 @@ export default function App() {
 
   const copyPasteRef = useRef();
   const inputRef = useRef();
-
-  /* https://stackoverflow.com/questions/67399620/how-to-make-open-url-on-click-on-button-in-reactjs */
-  const openInNewTab = (url) => {
-    const newWindow = window.open(url, '_blank', 'noopener,noreferrer');
-    if (newWindow) newWindow.opener = null;
-  };
-
-  /* https://medium.com/@ctrlaltmonique/how-to-create-a-custom-file-upload-button-in-react-with-typescript-b08150f1532e */
-  function handleFileUpload(e) {
-    const { files } = e.target;
-    if (!files) return;
-
-    const file = files[0];
-    const reader = new FileReader();
-    reader.onload = () => {
-      /* process the player.log file */
-      const fileContentArray = reader.result.split('\n');
-      let userString;
-      for (let i = 0; i < fileContentArray.length; i += 1) {
-        const line = fileContentArray[i];
-        if (line.trim().startsWith('===> {"code":0,"user"')) {
-          userString = line;
-          break;
-        }
-      }
-      const userData = JSON.parse(userString.slice(4).trim()).user;
-      const inventory = userData.cards;
-      const divRoot = document.getElementById('decksHolder');
-      const root = createRoot(divRoot);
-      const DECKS = [];
-      userData.decks.forEach((deck) => {
-        const cardIds = [];
-        deck.cards.forEach((card) => {
-          inventory.forEach((invCard) => {
-            // eslint-disable-next-line no-underscore-dangle
-            if (invCard._id === card) {
-              cardIds.push(invCard.cardid);
-            }
-          });
-        });
-        const madeurl = `/?deck=${cardIds.join('.')}`;
-        DECKS.push({ name: deck.name, url: madeurl });
-      });
-      root.render(
-        DECKS.map((deck) => (
-          <Button
-            label={deck.name}
-            style={{ margin: '8px' }}
-            onClick={() => openInNewTab(deck.url)}
-          />
-        )),
-      );
-    };
-    reader.readAsText(file);
-  }
-
-  function handleButtonClick(e) {
-    e.preventDefault();
-    if (!inputRef || !inputRef.current) return;
-
-    inputRef.current.click();
-  }
 
   const shareableUrl = `friendsvsfriends.help/${window.location.search}`;
   const tryToCopy = async (e) => {
@@ -192,10 +127,14 @@ export default function App() {
   const deckIsEmpty = myDeck.length <= 0;
 
   const filteredAndSortedContentCard = allCards
-    .filter((c) => (cardFilter !== 'All' ? c.type === cardFilter : c.type !== 'Personality'))
-    .filter((c) => (cardSearch.length > 0
-      ? c.name.toLowerCase().includes(cardSearch.toLowerCase())
-      : true))
+    .filter((c) =>
+      cardFilter !== 'All' ? c.type === cardFilter : c.type !== 'Personality'
+    )
+    .filter((c) =>
+      cardSearch.length > 0
+        ? c.name.toLowerCase().includes(cardSearch.toLowerCase())
+        : true
+    )
     .sort(cardSorters[cardSort]);
 
   return (
@@ -209,112 +148,20 @@ export default function App() {
           }}
         />
       ))}
-      <div className="topMenuContainer">
-        <div className="topMenu">
-          <div className="title">
-            <img className="logo" src="./favicon.ico" alt="" />
-            <span className="text">FvF Deck Builder</span>
-          </div>
-          <div className="costMenu">
-            <span>
-              Cost:
-              {' '}
-              {deckCost > MAX_COST ? (
-                <b style={{ color: 'red' }}>{deckCost}</b>
-              ) : (
-                deckCost
-              )}
-              /
-              {MAX_COST}
-            </span>
-            <span>
-              Count:
-              {' '}
-              {deckCount < MIN_CARDS ? (
-                <b style={{ color: 'red' }}>{deckCount}</b>
-              ) : (
-                deckCount
-              )}
-              /
-              {MIN_CARDS}
-            </span>
-          </div>
-          <div>
-            <Button
-              onClick={() => setIsResetModalOpen(!isResetModalOpen)}
-              label="Reset"
-            />
-            <Modal
-              isOpen={isResetModalOpen}
-              onCancel={() => setIsResetModalOpen(false)}
-              onConfirm={() => {
-                setMyDeck([]);
-                setIsResetModalOpen(false);
-              }}
-            />
-            <Button
-              onClick={() => {
-                setShareMenuOpen(!shareMenuOpen);
-                setIsLoadMenuOpen(false);
-              }}
-              label="Share"
-              forceActive={shareMenuOpen}
-            />
-            <Button
-              onClick={() => {
-                setIsLoadMenuOpen(!isLoadMenuOpen);
-                setShareMenuOpen(false);
-              }}
-              label="Load"
-            />
-          </div>
-        </div>
-        <div
-          className="ShareMenu"
-          aria-hidden={!shareMenuOpen}
-          style={{
-            transform: `translate(0%, 100%) scale(1.0, ${shareMenuOpen ? 1.0 : 0.0})`,
-          }}
-        >
-          <div className="ShareContainer">
-            {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
-            <label htmlFor="ShareCopyPastInput">Link:&nbsp;</label>
-            <TextInput
-              id="ShareCopyPastInput"
-              ref={copyPasteRef}
-              type="text"
-              value={`friendsvsfriends.help/${window.location.search}`}
-              readOnly
-              onClick={tryToCopy}
-            />
-          </div>
-        </div>
-        <div
-          className="LoadMenu"
-          aria-hidden={!isLoadMenuOpen}
-          style={{
-            transform: `translate(0%, 100%) scale(1.0, ${isLoadMenuOpen ? 1.0 : 0.0})`,
-          }}
-        >
-          <div className="LoadContainer">
-            {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
-            <Button
-              onClick={(e) => handleButtonClick(e)}
-              label="Upload Player.log"
-            />
-            <input ref={inputRef} type="file" id="fileInput" hidden onChange={(e) => handleFileUpload(e)} />
-            <div id="decksHolder" />
-          </div>
-          {/* eslint-disable-next-line react/style-prop-object */}
-          <div style={{ marginTop: '0.5rem' }}>
-            <span>
-              Located in: /Users/
-              <span style={{ fontStyle: 'italic', opacity: 0.5 }}>your name</span>
-              /AppData/LocalLow/Brainwash Gang/Friends vs Friends/player.log
-            </span>
-          </div>
-        </div>
-      </div>
+      <TopBar
+        deckCost={deckCost}
+        deckCount={deckCount}
+        isResetModalOpen={isResetModalOpen}
+        setIsResetModalOpen={setIsResetModalOpen}
+        setMyDeck={setMyDeck}
+        shareMenuOpen={shareMenuOpen}
+        setShareMenuOpen={setShareMenuOpen}
+        isLoadMenuOpen={isLoadMenuOpen}
+        setIsLoadMenuOpen={setIsLoadMenuOpen}
+        copyPasteRef={copyPasteRef}
+        inputRef={inputRef}
+        tryToCopy={tryToCopy}
+      />
       <div className={`myDeck ${deckIsEmpty ? 'hello' : ''}`}>
         {deckIsEmpty ? (
           <>
@@ -449,27 +296,7 @@ export default function App() {
           <NotFound cardSearch={cardSearch} />
         )}
       </div>
-      <footer>
-        <div>
-          <a href="https://friendsvsfriends.com">Friends vs Friends</a>
-          {' '}
-          is created by
-          {' '}
-          <a href="https://brainwashgang.com/">Brainwash Gang</a>
-          {' '}
-          and published by
-          {' '}
-          <a href="https://rawfury.com/">Raw Fury</a>
-        </div>
-        <br />
-        <div>
-          FvF-Decks is an
-          {' '}
-          <a href="https://github.com/CoolDotty/fvf-decks">open-source project</a>
-          {' '}
-          maintained with 💔 by all its contributors
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }
@@ -503,8 +330,7 @@ function CopiedPopup(props) {
         pointerEvents: 'none',
         opacity: 1.0,
         transition: `opacity ${COPIED_POPUP_TIMEOUT}ms, transform ${COPIED_POPUP_TIMEOUT}ms`,
-      }}
-    >
+      }}>
       Copied!
     </div>
   );

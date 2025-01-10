@@ -3,11 +3,25 @@ module.exports = {
     browser: true,
     es2021: true,
   },
-  extends: ['airbnb', 'airbnb/hooks'],
+  extends: [
+    'eslint:recommended',
+    'airbnb',
+    'airbnb/hooks',
+    'plugin:react/recommended',
+    'plugin:prettier/recommended',
+  ],
+  parserOptions: {
+    ecmaVersion: 'latest',
+    sourceType: 'module',
+  },
+  plugins: ['react', 'prettier'],
   rules: {
+    'react/react-in-jsx-scope': 'off',
+    'prettier/prettier': 'error',
     'react/prop-types': 0,
     'react/jsx-props-no-spreading': 0,
     'prefer-arrow-callback': 0,
+    'react/jsx-no-bind': 0,
   },
   overrides: [
     {
@@ -20,9 +34,4 @@ module.exports = {
       },
     },
   ],
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-  },
-  plugins: ['react'],
 };

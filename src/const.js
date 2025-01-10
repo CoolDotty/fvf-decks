@@ -1,9 +1,12 @@
+export const MAX_COST = 50;
+export const MIN_CARDS = 25;
+
 // FvF cards and first sorted by patch, then by ID
 export const defaultCardSort = (a, b) => {
   // Present always shows at the very beginning
   if (a.name === 'Present') return -1;
   if (b.name === 'Present') return 1;
-  return (a.batch === b.batch ? a.id - b.id : a.batch - b.batch);
+  return a.batch === b.batch ? a.id - b.id : a.batch - b.batch;
 };
 
 // Batch:
@@ -157,52 +160,56 @@ export const allCards = [
 
 export const cards = allCards.filter(({ type }) => type !== 'Personality');
 
-export const personalities = allCards.filter(({ id, type }) => type === 'Personality' && id !== 1999);
+export const personalities = allCards.filter(
+  ({ id, type }) => type === 'Personality' && id !== 1999
+);
 
-export const personalityToId = (p) => ({
-  Classic: 'seagull',
-  'Thick Coat': 'polarbear',
-  'Power Legs': 'moose',
-  Runner: 'hare',
-  'Katana Lover': 'tiger',
-  "It's Medicinal": 'duck',
-  'Big Bullets': 'cat',
-  Brasslover: 'woodpecker',
-  'Dither & Banding': 'rat',
-  'Reading Glasses': 'crocodile',
-  Badass: 'doberman',
-  Roleplay: 'toad',
-  Arpeggio: 'cow',
-  'Undercover Agent': 'wolf',
-  'Left Behind': 'dingo',
-  'At The End Of The Road': 'dingo_laika',
-  'Venom Eater': 'dingo_siaro',
-  'Fluffy Wool': 'dingo_jawhara',
-  'Energy Boost': 'dingo_fennecfox',
-  Stuntman: 'dingo_turtle',
-  Determination: 'dingo_llama',
-})[p];
+export const personalityToId = (p) =>
+  ({
+    Classic: 'seagull',
+    'Thick Coat': 'polarbear',
+    'Power Legs': 'moose',
+    Runner: 'hare',
+    'Katana Lover': 'tiger',
+    "It's Medicinal": 'duck',
+    'Big Bullets': 'cat',
+    Brasslover: 'woodpecker',
+    'Dither & Banding': 'rat',
+    'Reading Glasses': 'crocodile',
+    Badass: 'doberman',
+    Roleplay: 'toad',
+    Arpeggio: 'cow',
+    'Undercover Agent': 'wolf',
+    'Left Behind': 'dingo',
+    'At The End Of The Road': 'dingo_laika',
+    'Venom Eater': 'dingo_siaro',
+    'Fluffy Wool': 'dingo_jawhara',
+    'Energy Boost': 'dingo_fennecfox',
+    Stuntman: 'dingo_turtle',
+    Determination: 'dingo_llama',
+  })[p];
 
-export const personalityToRender = (p) => ({
-  Classic: 'characters/character_full_seagull_default.png',
-  'Thick Coat': 'characters/character_full_polarbear_default.png',
-  'Power Legs': 'characters/character_full_moose_default.png',
-  Runner: 'characters/character_full_hare_default.png',
-  'Katana Lover': 'characters/character_full_tiger_default.png',
-  "It's Medicinal": 'characters/character_full_duck_default.png',
-  'Big Bullets': 'characters/character_full_cat_default.png',
-  Brasslover: 'characters/character_full_woodpecker_default.png',
-  'Dither & Banding': 'characters/character_full_rat_default.png',
-  'Reading Glasses': 'characters/character_full_crocodile_default.png',
-  Badass: 'characters/character_full_doberman_default.png',
-  Roleplay: 'characters/character_full_toad_default.png',
-  Arpeggio: 'characters/character_full_cow_default.png',
-  'Undercover Agent': 'characters/character_full_wolf_default.png',
-  'Left Behind': 'characters/character_full_dingo_default.png',
-  'At The End Of The Road': 'characters/character_full_dingo_laika.png',
-  'Venom Eater': 'characters/character_full_dingo_siaro.png',
-  'Fluffy Wool': 'characters/character_full_dingo_jawhara.png',
-  'Energy Boost': 'characters/character_full_dingo_fennecfox.png',
-  Stuntman: 'characters/character_full_dingo_turtle.png',
-  Determination: 'characters/character_full_dingo_llama.png',
-})[p];
+export const personalityToRender = (p) =>
+  ({
+    Classic: 'characters/character_full_seagull_default.png',
+    'Thick Coat': 'characters/character_full_polarbear_default.png',
+    'Power Legs': 'characters/character_full_moose_default.png',
+    Runner: 'characters/character_full_hare_default.png',
+    'Katana Lover': 'characters/character_full_tiger_default.png',
+    "It's Medicinal": 'characters/character_full_duck_default.png',
+    'Big Bullets': 'characters/character_full_cat_default.png',
+    Brasslover: 'characters/character_full_woodpecker_default.png',
+    'Dither & Banding': 'characters/character_full_rat_default.png',
+    'Reading Glasses': 'characters/character_full_crocodile_default.png',
+    Badass: 'characters/character_full_doberman_default.png',
+    Roleplay: 'characters/character_full_toad_default.png',
+    Arpeggio: 'characters/character_full_cow_default.png',
+    'Undercover Agent': 'characters/character_full_wolf_default.png',
+    'Left Behind': 'characters/character_full_dingo_default.png',
+    'At The End Of The Road': 'characters/character_full_dingo_laika.png',
+    'Venom Eater': 'characters/character_full_dingo_siaro.png',
+    'Fluffy Wool': 'characters/character_full_dingo_jawhara.png',
+    'Energy Boost': 'characters/character_full_dingo_fennecfox.png',
+    Stuntman: 'characters/character_full_dingo_turtle.png',
+    Determination: 'characters/character_full_dingo_llama.png',
+  })[p];
