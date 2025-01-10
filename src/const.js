@@ -1,3 +1,6 @@
+export const MAX_COST = 50;
+export const MIN_CARDS = 25;
+
 // FvF cards and first sorted by patch, then by ID
 export const defaultCardSort = (a, b) => {
   // Present always shows at the very beginning

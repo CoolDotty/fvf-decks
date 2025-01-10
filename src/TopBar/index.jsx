@@ -3,11 +3,8 @@ import { createRoot } from 'react-dom/client';
 import Button from '../Button';
 import TextInput from '../TextInput';
 import Modal from '../Modal';
-
+import { MAX_COST, MIN_CARDS } from '../const';
 import './styles.css';
-
-const MAX_COST = 50;
-const MIN_CARDS = 25;
 
 /* https://stackoverflow.com/questions/67399620/how-to-make-open-url-on-click-on-button-in-reactjs */
 const openInNewTab = (url) => {
